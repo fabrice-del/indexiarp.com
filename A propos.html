@@ -26,6 +26,12 @@
     --serif:   'Instrument Serif', Georgia, serif;
     --sans:    'Inter', -apple-system, sans-serif;
     --mono:    'JetBrains Mono', ui-monospace, monospace;
+    /* Variables carte conceptuelle */
+    --white:    #F8F8F8;
+    --dim:      #7A8294;
+    --bg-card:  #181B21;
+    --bg-card-2:#1E2229;
+    --border:   rgba(248,248,248,0.10);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -758,7 +764,7 @@
     position: absolute;
     left: 28.2%;
     transform: translateX(-50%);
-    top: 80px;
+    top: 40px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
     font-weight: 700;
@@ -770,7 +776,7 @@
   .legend-block {
     position: absolute;
     right: 24px;
-    top: 110px;
+    top: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -848,8 +854,8 @@
 .s-node.visible .s-node-label,
 .s-node.visible .s-node-tag,
 .s-node.visible .s-node-sub { opacity: 1; }
-.s-node-tag   { font-size: 18px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
-.s-node-label { font-size: 26px; font-weight: 600; fill: var(--white); }
+.s-node-tag   { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
+.s-node-label { font-size: 22px; font-weight: 600; fill: var(--white); }
 .s-node-sub   { font-size: 18px; fill: rgba(248,248,248,0.80); }
 
 .s-node.k-user .s-node-tag { fill: var(--blue);   }
@@ -1126,7 +1132,6 @@
   <div class="canvas-wrap">
     <div class="canvas">
     <div class="legend-bar">
-      <div class="legend-wall">// MUR PERMÉABLE DU SEO</div>
       <div class="legend-block">
         <div class="legend-title">// QUI FAIT QUOI</div>
         <div class="legend-items">
@@ -1164,8 +1169,6 @@
         <!-- Wall: solid from top to center of node 03, dashed afterwards.
              Node 03 (seo) sits at y=370..450 so its vertical center is y=410.
              Wall placed at x=440, between nodes 02 (LLM, x=240..420) and 03 (SEO, x=460..620). -->
-        <line class="s-wall solid"  id="wall-solid"  x1="620" y1="200" x2="620" y2="540"/>
-        <line class="s-wall dashed" id="wall-dashed" x1="620" y1="540" x2="620" y2="890"/>
 
         <!-- legend moved to HTML -->
 
@@ -1637,8 +1640,6 @@ function applyState(idx) {
   // (Rings removed — ownership chips on each node + legend instead.)
 
   // Wall (two segments)
-  document.getElementById('wall-solid').classList.toggle('visible', showWall);
-  document.getElementById('wall-dashed').classList.toggle('visible', showWall);
 
   // Detail (mini rail meta only — detail strip removed)
   const dn = document.getElementById('detail-num');
