@@ -76,7 +76,6 @@
     padding: 140px 0 100px;
     position: relative;
 
-    border-bottom: 1px solid var(--line);
   }
 
   .hero::before {
@@ -376,6 +375,32 @@
 
   .quote-source-name strong { color: var(--purple); font-weight: 500; }
 
+
+  .quote-box {
+    position: relative;
+    overflow: hidden;
+    margin-top: 56px;
+    padding: 44px 48px 40px;
+    background: #0A0C10;
+    border: 1px solid rgba(198,120,221,0.2);
+    border-radius: 2px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .quote-box.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .quote-box::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 60%; height: 100%;
+    background: radial-gradient(circle at 100% 0%, rgba(198,120,221,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
   /* ═══ STATS ═══════════════════════════════════════════════════ */
 
   .stats-section { background: var(--bg); padding: 120px 0; }
@@ -571,247 +596,6 @@
     color: var(--text-3);
   }
 
-  /* ═══ PROCESS ═════════════════════════════════════════════════ */
-
-  .process-section { background: var(--bg-2); padding: 120px 0; }
-
-  .process-header {
-    margin-bottom: 72px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .process-header.is-visible { opacity: 1; transform: translateY(0); }
-
-  .process-title {
-    font-family: var(--serif);
-    font-size: 44px;
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 20px;
-  }
-
-  .process-sub { font-size: 17px; line-height: 1.75; color: var(--text-2); max-width: 620px; }
-
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-
-    border-radius: 2px;
-
-    margin-bottom: 56px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .steps-grid.is-visible { opacity: 1; transform: translateY(0); }
-
-  .step {
-    padding: 40px 32px;
-    border: 1px solid var(--line);
-    position: relative;
-    cursor: default;
-
-    transition: background 0.4s;
-  }
-
-  .step:last-child { border-right: none; }
-
-  .step::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 2px;
-    background: var(--blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .step:hover::before { transform: scaleX(1); }
-  .step:hover { background: rgba(97,175,239,0.04); }
-
-  .step-index {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(97,175,239,0.5);
-    margin-bottom: 20px;
-    transition: color 0.3s;
-  }
-
-  .step:hover .step-index { color: var(--blue); }
-
-  .step-name {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 12px;
-    transition: color 0.3s;
-  }
-
-  .step:hover .step-name { color: #fff; }
-
-  .step-detail { font-size: 13px; line-height: 1.6; color: var(--text-3); transition: color 0.3s; }
-  .step:hover .step-detail { color: var(--text-2); }
-
-  .coverage-table {
-
-    border-radius: 2px;
-
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s;
-  }
-
-  .coverage-table.is-visible { opacity: 1; transform: translateY(0); }
-
-  .ct-row {
-    display: grid;
-    grid-template-columns: 200px repeat(3, 1fr) 160px;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .ct-row:last-child { border-bottom: none; }
-  .ct-row.ct-head { background: rgba(255,255,255,0.02); }
-
-  .ct-head-cell {
-    padding: 16px 24px;
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    border: 1px solid var(--line);
-  }
-
-  .ct-head-cell:last-child { border-right: none; }
-
-  .ct-label-cell {
-    padding: 28px 24px;
-    border: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-  }
-
-  .ct-label-text {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-2);
-  }
-
-  .ct-row.row-indexia .ct-label-text { color: var(--orange); }
-  .ct-row.row-seo     .ct-label-text { color: var(--blue); }
-  .ct-row.row-rp      .ct-label-text { color: var(--green); }
-
-  .ct-cell { padding: 28px 24px; border-right: 1px solid var(--line); display: flex; align-items: center; }
-  .ct-cell:last-child { border-right: none; }
-
-  .ct-block { width: 100%; height: 6px; border-radius: 2px; }
-  .ct-block.active   { background: var(--cell-color); }
-  .ct-block.inactive { background: rgba(255,255,255,0.05); }
-
-  .row-indexia .ct-block.active { --cell-color: var(--orange); }
-  .row-seo     .ct-block.active { --cell-color: var(--blue); }
-  .row-rp      .ct-block.active { --cell-color: var(--green); }
-
-  .ct-result { padding: 28px 24px; display: flex; align-items: center; justify-content: center; }
-
-  .ct-result-tag {
-    font-family: var(--mono);
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 2px;
-  }
-
-  .ct-result-tag.yes     { background: rgba(244,108,35,0.12); color: var(--orange); border: 1px solid rgba(244,108,35,0.25); }
-  .ct-result-tag.partial { background: rgba(255,255,255,0.03); color: var(--text-3); border: 1px solid var(--line); }
-
-
-  /* ═══ QUOTE BOX ══════════════════════════════════════════════ */
-  .quote-box {
-    margin-top: 64px;
-    padding: 56px 64px;
-    background: #0A0C10;
-    border: 1px solid rgba(198,120,221,0.2);
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
-  }
-
-  .quote-box.is-visible { opacity: 1; transform: translateY(0); }
-
-  /* Fade mauve coin supérieur droit */
-  .quote-box::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(198,120,221,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .quote-box .quote-opener {
-    font-family: var(--serif);
-    font-size: 80px;
-    font-style: italic;
-    color: var(--purple);
-    opacity: 0.6;
-    line-height: 0.8;
-    margin-bottom: 24px;
-    display: block;
-  }
-
-  .quote-box .quote-body {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-style: italic;
-    line-height: 1.65;
-    color: var(--text);
-    margin-bottom: 32px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quote-box .quote-source { 
-    display: flex; 
-    align-items: center; 
-    gap: 16px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quote-box .quote-source-line { 
-    width: 24px; height: 1px; 
-    background: var(--purple); 
-    opacity: 0.5; 
-  }
-
-  .quote-box .quote-source-name {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-3);
-  }
-
-  .quote-box .quote-source-name strong { 
-    color: var(--purple); 
-    font-weight: 500; 
-  }
   /* ═══ RESPONSIVE ══════════════════════════════════════════════ */
 
   @media (max-width: 1024px) {
@@ -876,6 +660,49 @@
     .steps-grid.is-visible .step::before { transform: scaleX(1); }
     .steps-grid.is-visible .step-index   { color: var(--blue); }
   }
+
+  /* ═══ CARTE CONCEPTUELLE ══════════════════════════════════════ */
+
+  .carte-section {
+    background: #0F1115;
+    padding: 0;
+  }
+  .carte-section > .container {
+    padding-top: 72px;
+    padding-bottom: 40px;
+  }
+  .carte-section-header {
+    max-width: 760px;
+  }
+  .carte-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 16px;
+  }
+  .carte-title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.08;
+    color: var(--text);
+  }
+  .carte-frame-wrap {
+    width: 100%;
+    height: 740px;
+    overflow: hidden;
+  }
+  .carte-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+    background: #0F1115;
+  }
+
 </style>
 </head>
 <body>
@@ -886,7 +713,7 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        Première agence spécialisée en relations publiques et GEO au Québec
+        Première agence GEO et relations publiques au Québec
         <span class="hero-badge-line"></span>
       </div>
       <h1>Ce que seulement<br>IndexIA peut<br><em style="color:var(--orange); font-style:italic;">faire pour vous.</em></h1>
@@ -896,6 +723,19 @@
         aux techniques et processus des LLM.
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ══ CARTE CONCEPTUELLE ═══════════════════════════════════════ -->
+<section class="carte-section">
+  <div class="container">
+    <div class="carte-section-header" data-reveal>
+      <div class="carte-eyebrow">Du prompt à la réponse</div>
+      <h2 class="carte-title">Comment les LLM vous trouvent<br><em style="font-style:italic; color:#61AFEF;">— et vous citent en 9 étapes.</em></h2>
+    </div>
+  </div>
+  <div class="carte-frame-wrap">
+    <iframe class="carte-frame" src="IndexIA%20Carte%20Conceptuelle.html" title="Carte conceptuelle GEO IndexIA"></iframe>
   </div>
 </section>
 
@@ -1013,76 +853,6 @@
   </div>
 </section>
 
-<!-- ══ PROCESS ════════════════════════════════════════════════════ -->
-<section class="process-section">
-  <div class="container">
-
-    <div class="process-header" data-reveal>
-      <div class="section-eyebrow" style="--eyebrow-color: var(--blue);">Comment ça fonctionne</div>
-      <h2 class="process-title">Le parcours d'une réponse IA.</h2>
-      <p class="process-sub">
-        De la question de l'utilisateur à la réponse générée — et pourquoi
-        IndexIA couvre l'ensemble du spectre là où une agence SEO ou RP
-        seule ne peut pas.
-      </p>
-    </div>
-
-    <div class="steps-grid" data-reveal>
-      <div class="step">
-        <div class="step-index">Étape 01</div>
-        <h3 class="step-name">Question utilisateur</h3>
-        <p class="step-detail">L'utilisateur soumet une requête au modèle d'IA.</p>
-      </div>
-      <div class="step">
-        <div class="step-index">Étape 02</div>
-        <h3 class="step-name">Autorité & sources</h3>
-        <p class="step-detail">Le LLM identifie les sources fiables et reconnues — les RP bâtissent ce signal.</p>
-      </div>
-      <div class="step">
-        <div class="step-index">Étape 03</div>
-        <h3 class="step-name">Extraction du contenu</h3>
-        <p class="step-detail">Le modèle extrait les paragraphes les mieux structurés — le contenu GEO optimise ce levier.</p>
-      </div>
-      <div class="step">
-        <div class="step-index">Étape 04</div>
-        <h3 class="step-name">Signaux techniques</h3>
-        <p class="step-detail">Les données structurées réduisent l'ambiguïté sémantique autour de votre marque.</p>
-      </div>
-    </div>
-
-    <div class="coverage-table" data-reveal>
-      <div class="ct-row ct-head">
-        <div class="ct-head-cell"></div>
-        <div class="ct-head-cell">Autorité & sources</div>
-        <div class="ct-head-cell">Contenu structuré</div>
-        <div class="ct-head-cell">Signaux techniques</div>
-        <div class="ct-head-cell">Cité par l'IA</div>
-      </div>
-      <div class="ct-row row-indexia">
-        <div class="ct-label-cell"><span class="ct-label-text">IndexIA</span></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-result"><span class="ct-result-tag yes">Couverture complète</span></div>
-      </div>
-      <div class="ct-row row-rp">
-        <div class="ct-label-cell"><span class="ct-label-text">Agence RP seule</span></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-cell"><div class="ct-block inactive"></div></div>
-        <div class="ct-cell"><div class="ct-block inactive"></div></div>
-        <div class="ct-result"><span class="ct-result-tag partial">Partielle</span></div>
-      </div>
-      <div class="ct-row row-seo">
-        <div class="ct-label-cell"><span class="ct-label-text">Agence SEO seule</span></div>
-        <div class="ct-cell"><div class="ct-block inactive"></div></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-cell"><div class="ct-block active"></div></div>
-        <div class="ct-result"><span class="ct-result-tag partial">Partielle</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <script>
 (function() {
