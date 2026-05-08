@@ -52,11 +52,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .container {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
   .c-orange { color: var(--orange); }
   .c-blue   { color: var(--blue); }
@@ -68,11 +64,9 @@
     from { opacity: 0; transform: translateY(30px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  @keyframes gridFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  /* ═══ HERO ════════════════════════════════════════════════════
-     Design différent : alignement bas, grille diagonale,
-     halo orange haut-droite, sous-titre avec bordure gauche.
-     ════════════════════════════════════════════════════════════ */
+  /* ═══ HERO ════════════════════════════════════════════════════ */
 
   .hero {
     background: var(--bg);
@@ -85,7 +79,6 @@
     border-bottom: 1px solid var(--line);
   }
 
-  /* Même grille carrée que Notre approche */
   .hero::before {
     content: '';
     position: absolute;
@@ -98,12 +91,7 @@
     animation: gridFadeIn 1.2s ease-out;
   }
 
-  @keyframes gridFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
+  .hero-content { position: relative; z-index: 2; }
 
   .hero-badge {
     display: inline-flex;
@@ -120,16 +108,14 @@
   }
 
   .hero-badge-dot {
-    width: 5px;
-    height: 5px;
+    width: 5px; height: 5px;
     border-radius: 50%;
     background: var(--orange);
     flex-shrink: 0;
   }
 
   .hero-badge-line {
-    width: 32px;
-    height: 1px;
+    width: 32px; height: 1px;
     background: var(--orange);
     opacity: 0.35;
   }
@@ -158,30 +144,63 @@
 
   .hero-sub strong { color: var(--text); font-weight: 600; }
 
-  /* ═══ AVANTAGES — Lignes éditoriales pleine-largeur ═══════════
-     Layout radicalement différent des cards de Notre approche.
-     Chaque avantage = une rangée en 2 colonnes (num | contenu).
+  /* ═══ AVANTAGES — 3 colonnes côte à côte ══════════════════════
+     Chaque carte : numéro géant coloré + ligne du haut + fond wash
      ════════════════════════════════════════════════════════════ */
 
   .avantages-section {
     background: var(--bg-2);
+    padding: 120px 0;
   }
 
-  .avantages-container {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 40px;
+  .avantages-intro {
+    margin-bottom: 64px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
   }
 
-  /*
-   * AVANTAGES — Layout éditorial
-   * Chaque bloc : meta pleine-largeur (numéro + ligne) en haut,
-   * puis titre à gauche et description à droite côte à côte.
-   */
-  .avantage-block {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--line);
+  .avantages-intro.is-visible { opacity: 1; transform: translateY(0); }
+
+  .avantages-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .avantages-eyebrow::before {
+    content: '';
+    width: 18px; height: 1px;
+    background: var(--orange);
+  }
+
+  .avantages-title {
+    font-family: var(--serif);
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  /* Grille 3 colonnes */
+  .avantages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .avantage-card {
+    padding: 56px 44px 60px;
+    border-right: 1px solid var(--line);
     position: relative;
+    overflow: hidden;
     cursor: default;
     opacity: 0;
     transform: translateY(40px);
@@ -190,97 +209,105 @@
       transform 0.9s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .avantage-block.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .avantage-card:nth-child(2) { transition-delay: 0.12s; }
+  .avantage-card:nth-child(3) { transition-delay: 0.24s; }
+  .avantage-card:last-child   { border-right: none; }
 
-  .avantage-block.row-01 { --acc: var(--orange); }
-  .avantage-block.row-02 { --acc: var(--purple); }
-  .avantage-block.row-03 { --acc: var(--green); }
+  .avantage-card.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* Ligne meta : numéro + tag + filet qui s'étend */
-  .avantage-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
+  /* Couleur accent */
+  .avantage-card.card-01 { --acc: var(--orange); }
+  .avantage-card.card-02 { --acc: var(--purple); }
+  .avantage-card.card-03 { --acc: var(--green);  }
 
-  .avantage-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    color: var(--acc);
-    opacity: 0.55;
-    transition: opacity 0.3s;
-    flex-shrink: 0;
-  }
-
-  .avantage-block:hover .avantage-num { opacity: 1; }
-
-  .avantage-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    flex-shrink: 0;
-    transition: color 0.3s;
-  }
-
-  .avantage-block:hover .avantage-tag { color: var(--acc); }
-
-  /* Filet extensible qui court de la fin du tag jusqu'au bout */
-  .avantage-meta-line {
-    flex: 1;
-    height: 1px;
-    background: var(--line);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .avantage-meta-line::after {
+  /* Ligne du haut qui se dessine au hover */
+  .avantage-card::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
     background: var(--acc);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    transition: transform 0.55s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .avantage-block:hover .avantage-meta-line::after { transform: scaleX(1); }
+  .avantage-card:hover::before { transform: scaleX(1); }
 
-  /* Corps : titre gauche | description droite */
-  .avantage-body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
+  /* Wash de fond coloré */
+  .avantage-card.card-01::after { content: ''; position: absolute; inset: 0; background: rgba(244,108,35,0.06); opacity: 0; transition: opacity 0.4s; }
+  .avantage-card.card-02::after { content: ''; position: absolute; inset: 0; background: rgba(198,120,221,0.06); opacity: 0; transition: opacity 0.4s; }
+  .avantage-card.card-03::after { content: ''; position: absolute; inset: 0; background: rgba(152,195,121,0.06); opacity: 0; transition: opacity 0.4s; }
 
-  .avantage-title {
+  .avantage-card:hover::after { opacity: 1; }
+
+  .avantage-card > * { position: relative; z-index: 1; }
+
+  /* Grand numéro coloré semi-transparent */
+  .avantage-bignum {
     font-family: var(--serif);
-    font-size: 44px;
+    font-size: 104px;
+    font-style: italic;
+    line-height: 1;
+    color: var(--acc);
+    opacity: 0.12;
+    margin-bottom: 36px;
+    transition: opacity 0.4s ease;
+    user-select: none;
+  }
+
+  .avantage-card:hover .avantage-bignum { opacity: 0.45; }
+
+  /* Tag avec point coloré */
+  .avantage-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acc);
+    opacity: 0.55;
+    margin-bottom: 18px;
+    transition: opacity 0.3s;
+  }
+
+  .avantage-tag::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--acc);
+    flex-shrink: 0;
+  }
+
+  .avantage-card:hover .avantage-tag { opacity: 1; }
+
+  /* Titre */
+  .avantage-card-title {
+    font-family: var(--serif);
+    font-size: 26px;
     font-weight: 400;
-    line-height: 1.15;
+    line-height: 1.3;
     color: var(--text);
+    margin-bottom: 20px;
     transition: color 0.3s;
   }
 
-  .avantage-block:hover .avantage-title { color: #fff; }
+  .avantage-card:hover .avantage-card-title { color: #fff; }
 
-  .avantage-text {
-    font-size: 17px;
-    line-height: 1.8;
+  /* Texte */
+  .avantage-card-text {
+    font-size: 15px;
+    line-height: 1.75;
     color: var(--text-2);
-    padding-top: 8px;
     transition: color 0.3s;
   }
 
-  .avantage-block:hover .avantage-text { color: rgba(240,242,245,0.85); }
+  .avantage-card:hover .avantage-card-text { color: rgba(240,242,245,0.85); }
+
+  /* Accent text inline */
+  .avantage-card-text .acc { color: var(--acc); font-weight: 500; }
 
   /* ═══ QUOTE ═══════════════════════════════════════════════════ */
 
@@ -298,10 +325,7 @@
     transition: all 0.9s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .quote-wrap.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .quote-wrap.is-visible { opacity: 1; transform: translateY(0); }
 
   .quote-opener {
     font-family: var(--serif);
@@ -323,18 +347,9 @@
     margin-bottom: 32px;
   }
 
-  .quote-source {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+  .quote-source { display: flex; align-items: center; gap: 16px; }
 
-  .quote-source-line {
-    width: 24px;
-    height: 1px;
-    background: var(--purple);
-    opacity: 0.5;
-  }
+  .quote-source-line { width: 24px; height: 1px; background: var(--purple); opacity: 0.5; }
 
   .quote-source-name {
     font-family: var(--mono);
@@ -344,17 +359,11 @@
     color: var(--text-3);
   }
 
-  .quote-source-name strong {
-    color: var(--purple);
-    font-weight: 500;
-  }
+  .quote-source-name strong { color: var(--purple); font-weight: 500; }
 
   /* ═══ STATS ═══════════════════════════════════════════════════ */
 
-  .stats-section {
-    background: var(--bg);
-    padding: 120px 0;
-  }
+  .stats-section { background: var(--bg); padding: 120px 0; }
 
   .section-eyebrow {
     font-family: var(--mono);
@@ -370,8 +379,7 @@
 
   .section-eyebrow::before {
     content: '';
-    width: 18px;
-    height: 1px;
+    width: 18px; height: 1px;
     background: var(--yellow);
     flex-shrink: 0;
   }
@@ -392,11 +400,9 @@
 
   .stats-header.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* Grille de corrélation */
   .corr-grid {
     display: grid;
     grid-template-columns: 1fr 80px 1fr;
-    gap: 0;
     align-items: stretch;
     margin-bottom: 48px;
     border: 1px solid var(--line);
@@ -448,7 +454,6 @@
 
   .card-high .corr-tag { color: rgba(152,195,121,0.6); }
   .card-low  .corr-tag { color: rgba(224,108,117,0.6); }
-
   .card-high:hover .corr-tag { color: var(--green); }
   .card-low:hover  .corr-tag { color: var(--red); }
 
@@ -463,16 +468,9 @@
   .card-high .corr-num { color: var(--green); }
   .card-low  .corr-num { color: var(--red); opacity: 0.65; }
 
-  .corr-desc {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--text-2);
-    transition: color 0.3s;
-  }
-
+  .corr-desc { font-size: 15px; line-height: 1.65; color: var(--text-2); transition: color 0.3s; }
   .corr-card:hover .corr-desc { color: rgba(240,242,245,0.85); }
 
-  /* Séparateur VS */
   .corr-sep {
     display: flex;
     flex-direction: column;
@@ -484,12 +482,7 @@
     border-right: 1px solid var(--line);
   }
 
-  .corr-vs {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-style: italic;
-    color: var(--text-3);
-  }
+  .corr-vs { font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--text-3); }
 
   .corr-mult {
     font-family: var(--mono);
@@ -501,7 +494,6 @@
     transform: rotate(180deg);
   }
 
-  /* +40% stat */
   .geo-block {
     padding: 64px;
     border: 1px solid rgba(229,192,123,0.2);
@@ -510,7 +502,6 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
-    gap: 0;
     overflow: hidden;
     cursor: default;
     opacity: 0;
@@ -543,9 +534,7 @@
 
   .geo-block:hover .geo-num { color: #f0ca7e; }
 
-  .geo-info {
-    padding-left: 64px;
-  }
+  .geo-info { padding-left: 64px; }
 
   .geo-label {
     font-family: var(--serif);
@@ -569,10 +558,7 @@
 
   /* ═══ PROCESS ═════════════════════════════════════════════════ */
 
-  .process-section {
-    background: var(--bg-2);
-    padding: 120px 0;
-  }
+  .process-section { background: var(--bg-2); padding: 120px 0; }
 
   .process-header {
     margin-bottom: 72px;
@@ -583,8 +569,6 @@
 
   .process-header.is-visible { opacity: 1; transform: translateY(0); }
 
-  .process-header .section-eyebrow::before { background: var(--blue); }
-
   .process-title {
     font-family: var(--serif);
     font-size: 44px;
@@ -593,14 +577,8 @@
     margin-bottom: 20px;
   }
 
-  .process-sub {
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--text-2);
-    max-width: 620px;
-  }
+  .process-sub { font-size: 17px; line-height: 1.75; color: var(--text-2); max-width: 620px; }
 
-  /* Étapes du processus */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -663,16 +641,9 @@
 
   .step:hover .step-name { color: #fff; }
 
-  .step-detail {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-3);
-    transition: color 0.3s;
-  }
-
+  .step-detail { font-size: 13px; line-height: 1.6; color: var(--text-3); transition: color 0.3s; }
   .step:hover .step-detail { color: var(--text-2); }
 
-  /* Tableau de couverture */
   .coverage-table {
     border: 1px solid var(--line);
     border-radius: 2px;
@@ -684,7 +655,6 @@
 
   .coverage-table.is-visible { opacity: 1; transform: translateY(0); }
 
-  /* 5 colonnes : label | étape A | étape B | étape C | résultat */
   .ct-row {
     display: grid;
     grid-template-columns: 200px repeat(3, 1fr) 160px;
@@ -692,11 +662,7 @@
   }
 
   .ct-row:last-child { border-bottom: none; }
-
-  /* Header row */
-  .ct-row.ct-head {
-    background: rgba(255,255,255,0.02);
-  }
+  .ct-row.ct-head { background: rgba(255,255,255,0.02); }
 
   .ct-head-cell {
     padding: 16px 24px;
@@ -710,7 +676,6 @@
 
   .ct-head-cell:last-child { border-right: none; }
 
-  /* Data rows */
   .ct-label-cell {
     padding: 28px 24px;
     border-right: 1px solid var(--line);
@@ -730,37 +695,18 @@
   .ct-row.row-seo     .ct-label-text { color: var(--blue); }
   .ct-row.row-rp      .ct-label-text { color: var(--green); }
 
-  .ct-cell {
-    padding: 28px 24px;
-    border-right: 1px solid var(--line);
-    display: flex;
-    align-items: center;
-  }
-
+  .ct-cell { padding: 28px 24px; border-right: 1px solid var(--line); display: flex; align-items: center; }
   .ct-cell:last-child { border-right: none; }
 
-  /* Bloc coloré = couvert */
-  .ct-block {
-    width: 100%;
-    height: 6px;
-    border-radius: 2px;
-    background: var(--cell-color, var(--line));
-  }
-
-  .ct-block.active { background: var(--cell-color); }
+  .ct-block { width: 100%; height: 6px; border-radius: 2px; }
+  .ct-block.active   { background: var(--cell-color); }
   .ct-block.inactive { background: rgba(255,255,255,0.05); }
 
   .row-indexia .ct-block.active { --cell-color: var(--orange); }
   .row-seo     .ct-block.active { --cell-color: var(--blue); }
   .row-rp      .ct-block.active { --cell-color: var(--green); }
 
-  /* Cellule résultat */
-  .ct-result {
-    padding: 28px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  .ct-result { padding: 28px 24px; display: flex; align-items: center; justify-content: center; }
 
   .ct-result-tag {
     font-family: var(--mono);
@@ -771,112 +717,71 @@
     border-radius: 2px;
   }
 
-  .ct-result-tag.yes {
-    background: rgba(244,108,35,0.12);
-    color: var(--orange);
-    border: 1px solid rgba(244,108,35,0.25);
-  }
+  .ct-result-tag.yes     { background: rgba(244,108,35,0.12); color: var(--orange); border: 1px solid rgba(244,108,35,0.25); }
+  .ct-result-tag.partial { background: rgba(255,255,255,0.03); color: var(--text-3); border: 1px solid var(--line); }
 
-  .ct-result-tag.partial {
-    background: rgba(255,255,255,0.03);
-    color: var(--text-3);
-    border: 1px solid var(--line);
-  }
-
-  /* ═══ RESPONSIVE ═══════════════════════════════════════════════ */
+  /* ═══ RESPONSIVE ══════════════════════════════════════════════ */
 
   @media (max-width: 1024px) {
+    .avantages-grid { grid-template-columns: 1fr; }
+    .avantage-card  { border-right: none; border-bottom: 1px solid var(--line); }
+    .avantage-card:last-child { border-bottom: none; }
     .corr-grid { grid-template-columns: 1fr; }
     .corr-sep  { display: none; }
-    .avantage-body { grid-template-columns: 1fr; gap: 24px; }
     .ct-row { grid-template-columns: 140px repeat(3, 1fr) 120px; }
   }
 
   @media (max-width: 768px) {
-    .container,
-    .avantages-container { padding: 0 24px; }
-
+    .container { padding: 0 24px; }
     .hero { padding: 120px 0 72px; min-height: 60vh; }
     .hero h1 { font-size: 46px; }
     .hero-sub { font-size: 16px; }
-
-    .avantage-block { padding: 48px 0; }
-    .avantage-body  { grid-template-columns: 1fr; gap: 20px; }
-    .avantage-title { font-size: 30px; }
-    .avantage-text  { padding-top: 0; }
-
-    .section-title-lg,
-    .process-title { font-size: 30px; }
-
+    .avantages-title { font-size: 30px; }
+    .avantage-bignum { font-size: 72px; }
+    .avantage-card { padding: 40px 28px 44px; }
+    .section-title-lg, .process-title { font-size: 30px; }
     .quote-body { font-size: 18px; }
-
-    .geo-block {
-      grid-template-columns: 1fr;
-      padding: 40px 28px;
-      gap: 0;
-    }
-    .geo-num {
-      font-size: 80px;
-      padding-right: 0;
-      padding-bottom: 32px;
-      border-right: none;
-      border-bottom: 1px solid rgba(229,192,123,0.15);
-    }
+    .geo-block { grid-template-columns: 1fr; padding: 40px 28px; }
+    .geo-num { font-size: 80px; padding-right: 0; padding-bottom: 32px; border-right: none; border-bottom: 1px solid rgba(229,192,123,0.15); }
     .geo-info { padding-left: 0; padding-top: 32px; }
-
     .steps-grid { grid-template-columns: 1fr 1fr; }
     .step:nth-child(2) { border-right: none; }
-    .step:nth-child(3) { border-top: 1px solid var(--line); }
-    .step:nth-child(4) { border-top: 1px solid var(--line); }
-
+    .step:nth-child(3), .step:nth-child(4) { border-top: 1px solid var(--line); }
     .ct-row { grid-template-columns: 100px repeat(3, 1fr) 80px; }
-    .ct-head-cell,
-    .ct-label-cell,
-    .ct-cell,
-    .ct-result { padding: 16px 12px; }
+    .ct-head-cell, .ct-label-cell, .ct-cell, .ct-result { padding: 16px 12px; }
     .ct-label-text { font-size: 8px; }
     .ct-head-cell  { font-size: 7px; }
   }
 
-  /* ═══════════════════════════════════════════════════════════════
-     TOUCH — scroll-reveal remplace hover
-     ═══════════════════════════════════════════════════════════════ */
+  /* ═══ TOUCH — scroll-reveal remplace hover ════════════════════ */
 
   @media (hover: none) {
 
-    /* Avantage rows */
-    .avantage-row::after {
+    /* Avantage cards */
+    .avantage-card::before {
       transition: transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s;
     }
-    .avantage-row.is-visible::after { transform: scaleX(1); }
+    .avantage-card.is-visible::before { transform: scaleX(1); }
+    .avantage-card.is-visible .avantage-bignum { opacity: 0.38; }
+    .avantage-card.is-visible .avantage-tag    { opacity: 1; }
 
-    .avantage-row.row-01.is-visible .avantage-tag { color: var(--orange); }
-    .avantage-row.row-02.is-visible .avantage-tag { color: var(--purple); }
-    .avantage-row.row-03.is-visible .avantage-tag { color: var(--green); }
-
-    .avantage-row.row-01.is-visible .avantage-num { color: var(--orange); opacity: 0.22; }
-    .avantage-row.row-02.is-visible .avantage-num { color: var(--purple); opacity: 0.28; }
-    .avantage-row.row-03.is-visible .avantage-num { color: var(--green);  opacity: 0.28; }
+    .avantage-card.card-01.is-visible::after { opacity: 1; }
+    .avantage-card.card-02.is-visible::after { opacity: 1; }
+    .avantage-card.card-03.is-visible::after { opacity: 1; }
 
     /* Correlation cards */
-    .corr-card::after {
-      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.45s;
-    }
-    .corr-card.is-visible::after { transform: scaleX(1); }
+    .corr-card::after { transition: transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.45s; }
+    .corr-card.is-visible::after  { transform: scaleX(1); }
     .card-high.is-visible .corr-tag { color: var(--green); }
     .card-low.is-visible  .corr-tag { color: var(--red); }
 
     /* +40% block */
-    .geo-block.is-visible {
-      border-color: rgba(229,192,123,0.35);
-    }
+    .geo-block.is-visible { border-color: rgba(229,192,123,0.35); }
 
-    /* Process steps */
-    .step::before {
-      transition: transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s;
-    }
+    /* Steps */
+    .step::before { transition: transform 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s; }
     .steps-grid.is-visible .step::before { transform: scaleX(1); }
-    .steps-grid.is-visible .step-index { color: var(--blue); }
+    .steps-grid.is-visible .step-index   { color: var(--blue); }
   }
 </style>
 </head>
@@ -903,61 +808,53 @@
 
 <!-- ══ AVANTAGES ═════════════════════════════════════════════════ -->
 <section class="avantages-section">
-  <div class="avantages-container">
+  <div class="container">
 
-    <div class="avantage-block row-01" data-reveal>
-      <div class="avantage-meta">
-        <span class="avantage-num">01</span>
-        <span class="avantage-tag">Guichet unique</span>
-        <span class="avantage-meta-line"></span>
-      </div>
-      <div class="avantage-body">
-        <h2 class="avantage-title">Un seul partenaire.<br>Toute la chaîne GEO.</h2>
-        <p class="avantage-text">
-          Relations publiques, création de contenu et signaux techniques
-          sans coordination inter-agences à gérer. Un seul interlocuteur
-          qui maîtrise <span class="c-orange">l'ensemble des leviers</span> —
-          de la couverture médiatique à l'optimisation technique.
-        </p>
-      </div>
+    <div class="avantages-intro" data-reveal>
+      <div class="avantages-eyebrow">Pourquoi IndexIA</div>
+      <h2 class="avantages-title">Trois raisons de choisir<br><span class="c-orange">l'approche IndexIA.</span></h2>
     </div>
 
-    <div class="avantage-block row-02" data-reveal>
-      <div class="avantage-meta">
-        <span class="avantage-num">02</span>
-        <span class="avantage-tag">Compétences transversales</span>
-        <span class="avantage-meta-line"></span>
+    <div class="avantages-grid">
+
+      <div class="avantage-card card-01" data-reveal>
+        <div class="avantage-bignum">01</div>
+        <div class="avantage-tag">Guichet unique</div>
+        <h3 class="avantage-card-title">Un seul partenaire.<br>Toute la chaîne GEO.</h3>
+        <p class="avantage-card-text">
+          Relations publiques, création de contenu et signaux techniques
+          sans coordination inter-agences à gérer. Un seul interlocuteur qui maîtrise
+          <span class="acc">l'ensemble des leviers</span> — de la couverture médiatique
+          à l'optimisation technique.
+        </p>
       </div>
-      <div class="avantage-body">
-        <h2 class="avantage-title">Les RP, le langage<br>naturel des LLM.</h2>
-        <p class="avantage-text">
+
+      <div class="avantage-card card-02" data-reveal>
+        <div class="avantage-bignum">02</div>
+        <div class="avantage-tag">Compétences transversales</div>
+        <h3 class="avantage-card-title">Les RP, le langage<br>naturel des LLM.</h3>
+        <p class="avantage-card-text">
           Rédaction simple, efficace, segmentée en idées claires : ce que les
-          professionnels RP font au quotidien est exactement ce que les LLM
-          exigent pour vous comprendre. Ce n'est pas une coïncidence —
-          c'est une <span class="c-purple">compétence directement transférable</span>
+          professionnels RP font au quotidien est exactement ce que les LLM exigent.
+          Ce n'est pas une coïncidence —
+          c'est une <span class="acc">compétence directement transférable</span>
           vers l'optimisation GEO.
         </p>
       </div>
-    </div>
 
-    <div class="avantage-block row-03" data-reveal>
-      <div class="avantage-meta">
-        <span class="avantage-num">03</span>
-        <span class="avantage-tag">Autorité</span>
-        <span class="avantage-meta-line"></span>
-      </div>
-      <div class="avantage-body">
-        <h2 class="avantage-title">L'autorité que les<br>LLM remarquent.</h2>
-        <p class="avantage-text">
-          Notre expertise en relations de presse nous permet de bâtir pour
-          votre marque un niveau d'autorité que les modèles d'IA génératifs
-          <span class="c-green">détectent et privilégient</span>. La crédibilité
-          construite dans les médias se traduit directement en visibilité
-          dans les réponses des LLM.
+      <div class="avantage-card card-03" data-reveal>
+        <div class="avantage-bignum">03</div>
+        <div class="avantage-tag">Autorité</div>
+        <h3 class="avantage-card-title">L'autorité que les<br>LLM remarquent.</h3>
+        <p class="avantage-card-text">
+          Notre expertise en relations de presse nous permet de bâtir pour votre marque
+          un niveau d'autorité que les modèles d'IA génératifs
+          <span class="acc">détectent et privilégient</span>. La crédibilité construite
+          dans les médias se traduit directement en visibilité dans les réponses des LLM.
         </p>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
@@ -998,24 +895,16 @@
       <div class="corr-card card-high" data-reveal>
         <div class="corr-tag">Mentions de marque</div>
         <div class="corr-num">0.664</div>
-        <p class="corr-desc">
-          Corrélation avec la probabilité d'être cité par l'IA —
-          le signal le plus fort identifié dans les études GEO.
-        </p>
+        <p class="corr-desc">Corrélation avec la probabilité d'être cité par l'IA — le signal le plus fort identifié dans les études GEO.</p>
       </div>
-
       <div class="corr-sep">
         <div class="corr-vs">vs</div>
         <div class="corr-mult">3× plus puissant</div>
       </div>
-
       <div class="corr-card card-low" data-reveal>
         <div class="corr-tag">Backlinks traditionnels</div>
         <div class="corr-num">0.218</div>
-        <p class="corr-desc">
-          Corrélation des backlinks classiques avec la citation par l'IA.
-          Moins déterminant qu'une présence dans les médias de référence.
-        </p>
+        <p class="corr-desc">Corrélation des backlinks classiques avec la citation par l'IA. Moins déterminant qu'une présence dans les médias de référence.</p>
       </div>
     </div>
 
@@ -1068,7 +957,6 @@
     </div>
 
     <div class="coverage-table" data-reveal>
-      <!-- Header -->
       <div class="ct-row ct-head">
         <div class="ct-head-cell"></div>
         <div class="ct-head-cell">Autorité & sources</div>
@@ -1076,8 +964,6 @@
         <div class="ct-head-cell">Signaux techniques</div>
         <div class="ct-head-cell">Cité par l'IA</div>
       </div>
-
-      <!-- IndexIA -->
       <div class="ct-row row-indexia">
         <div class="ct-label-cell"><span class="ct-label-text">IndexIA</span></div>
         <div class="ct-cell"><div class="ct-block active"></div></div>
@@ -1085,8 +971,6 @@
         <div class="ct-cell"><div class="ct-block active"></div></div>
         <div class="ct-result"><span class="ct-result-tag yes">Couverture complète</span></div>
       </div>
-
-      <!-- Agence RP -->
       <div class="ct-row row-rp">
         <div class="ct-label-cell"><span class="ct-label-text">Agence RP seule</span></div>
         <div class="ct-cell"><div class="ct-block active"></div></div>
@@ -1094,8 +978,6 @@
         <div class="ct-cell"><div class="ct-block inactive"></div></div>
         <div class="ct-result"><span class="ct-result-tag partial">Partielle</span></div>
       </div>
-
-      <!-- Agence SEO -->
       <div class="ct-row row-seo">
         <div class="ct-label-cell"><span class="ct-label-text">Agence SEO seule</span></div>
         <div class="ct-cell"><div class="ct-block inactive"></div></div>
@@ -1112,9 +994,7 @@
 (function() {
   const observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('is-visible');
     });
   }, { root: null, rootMargin: '0px', threshold: 0.1 });
 
