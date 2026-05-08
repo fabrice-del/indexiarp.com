@@ -690,18 +690,405 @@
     line-height: 1.08;
     color: var(--text);
   }
-  .carte-frame-wrap {
-    width: 100%;
+
+
+
+  /* ═══════════════════════════════════════════════════════════
+     CARTE CONCEPTUELLE — embedded styles
+  ═══════════════════════════════════════════════════════════ */
+  .carte-embed {
+    position: relative;
     height: 740px;
     overflow: hidden;
   }
-  .carte-frame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    background: #0F1115;
+
+
+
+
+
+
+/* ── HEADER ── */
+
+
+
+
+
+
+
+
+
+
+
+/* ── STAGE: full-width canvas ── */
+.carte-embed .stage {
+  position:absolute; inset:0 0 96px 0;
+}
+
+.canvas-wrap {
+  position:relative;
+  width:100%; height:100%;
+  background: var(--bg);
+  overflow:hidden;
+}
+.canvas {
+  position:absolute; inset:14px 14px 14px 14px;
+  background: var(--bg);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+}
+.canvas-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events:none;
+}
+
+
+  /* ═══ LÉGENDE HTML (top-right) ═══════════════════════════════ */
+  .legend-bar {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
   }
+  .legend-wall {
+    position: absolute;
+    left: 28.2%;
+    transform: translateX(-50%);
+    top: 80px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+  .legend-block {
+    position: absolute;
+    right: 24px;
+    top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+  .legend-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: right;
+    margin-bottom: 2px;
+  }
+  .legend-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-chip {
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    color: #0F1115;
+    flex-shrink: 0;
+  }
+  .legend-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(248,248,248,0.85);
+  }
+
+/* The diagram itself: ONE SVG that holds everything (rings, wall, edges, nodes).
+   Using viewBox 0 0 1600 800 so coordinates are simple and scale uniformly. */
+.diagram {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+}
+.diagram text { font-family:'Inter', sans-serif; }
+.diagram .mono { font-family:'JetBrains Mono', monospace; }
+
+/* SVG element states */
+.s-node-bg {
+  fill: var(--bg-card);
+  stroke: rgba(248,248,248,0.10);
+  stroke-width: 1;
+  opacity: 0.18;
+  transition: opacity .45s ease, fill .45s ease, stroke .45s ease, stroke-width .45s ease;
+}
+.s-node.visible .s-node-bg { opacity: 1; }
+.s-node.active  .s-node-bg {
+  fill: var(--bg-card-2);
+  stroke: var(--orange);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 12px rgba(244,108,35,0.4));
+}
+.s-node-label, .s-node-tag, .s-node-sub {
+  opacity: 0.18;
+  transition: opacity .45s ease, fill .45s ease;
+}
+.s-node.visible .s-node-label,
+.s-node.visible .s-node-tag,
+.s-node.visible .s-node-sub { opacity: 1; }
+.s-node-tag   { font-size: 18px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
+.s-node-label { font-size: 26px; font-weight: 600; fill: var(--white); }
+.s-node-sub   { font-size: 18px; fill: rgba(248,248,248,0.80); }
+
+.s-node.k-user .s-node-tag { fill: var(--blue);   }
+.s-node.k-llm  .s-node-tag { fill: var(--purple); }
+.s-node.k-seo  .s-node-tag { fill: var(--orange); }
+.s-node.k-rp   .s-node-tag { fill: var(--red);    }
+.s-node.k-idx  .s-node-tag { fill: var(--green);  }
+.s-node.k-out  .s-node-tag { fill: var(--yellow); }
+
+/* Edges */
+.s-edge {
+  fill: none;
+  stroke: rgba(248,248,248,0.22);
+  stroke-width: 1.6;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset .8s ease, stroke .35s ease, stroke-width .35s ease;
+}
+.s-edge.visible { stroke-dashoffset: 0; stroke: var(--orange); stroke-width: 2; }
+.s-edge.active {
+  stroke: var(--orange);
+  stroke-width: 2.4;
+}
+.s-edge-pulse {
+  fill: none;
+  stroke: var(--white);
+  stroke-width: 3;
+  stroke-linecap: round;
+  pointer-events: none;
+  opacity: 0;
+}
+.s-edge-pulse.run {
+  opacity: 1;
+  animation: pulse-travel 1.6s ease-in-out forwards;
+}
+@keyframes pulse-travel {
+  0%   { stroke-dashoffset: var(--len); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.s-arrow { fill: rgba(248,248,248,0.4); }
+.s-arrow-active { fill: var(--orange); }
+
+/* Ownership bars (replaces rings) — small colored chips that sit ON each node
+   showing which agencies cover the step. SEO=orange, RP=red, IndexIA=green. */
+.s-own {
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.s-node.visible .s-own { opacity: 1; }
+.s-own-chip {
+  rx: 2; ry: 2;
+}
+.s-own-letter {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  fill: var(--bg);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Ownership legend (top-right of canvas, in SVG) */
+.s-legend-row { font-family:'JetBrains Mono', monospace; }
+.s-legend-letter {
+  font-size: 10px; font-weight: 700;
+  fill: var(--bg);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+.s-legend-text {
+  font-size: 11px; font-weight: 600;
+  fill: rgba(248,248,248,0.85);
+  dominant-baseline: central;
+}
+.s-legend-steps {
+  font-size: 10px;
+  fill: var(--dim);
+  dominant-baseline: central;
+  font-family:'JetBrains Mono', monospace;
+}
+
+/* Wall */
+.s-wall {
+  stroke: var(--dim);
+  stroke-width: 1.5;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.s-wall.solid  { stroke-dasharray: none; }
+.s-wall.dashed { stroke-dasharray: 6 6; }
+.s-wall.visible { opacity: 0.7; }
+.s-wall-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--dim);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.s-wall-label.visible { opacity: 1; }
+
+/* Phase labels */
+.s-phase {
+  font-family:'JetBrains Mono', monospace;
+  font-size: 15px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  fill: var(--dim);
+}
+.s-main-title {
+  font-family:'Instrument Serif', Georgia, serif;
+  font-size: 26px; font-weight: 700; letter-spacing: -0.5px;
+  fill: var(--orange);
+}
+
+/* ── DETAIL STRIP (below canvas) ── */
+.detail {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 16px 24px;
+  display:grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  min-height: 88px;
+}
+.detail-left {
+  display:flex; flex-direction:column; gap: 4px;
+  min-width: 220px; max-width: 280px;
+  border-right: 1px solid var(--border);
+  padding-right: 24px;
+}
+.detail-num {
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color: var(--orange);
+}
+.detail-title {
+  font-size:17px; font-weight:600; color:var(--white);
+  line-height:1.25;
+}
+.detail-
+.detail-body em {
+  font-style:normal; color:var(--yellow);
+}
+.detail-body .b { color:var(--white); font-weight:600; font-style:normal; }
+
+/* Mini step rail inside header (replaces left rail) */
+.mini-rail {
+  display:flex; align-items:center; gap:6px;
+}
+.mini-step {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  background: transparent;
+  color: var(--dim);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all .2s;
+}
+.mini-step:hover { border-color: var(--white); color: var(--white); }
+.mini-step.done {
+  background: var(--green);
+  color: var(--bg);
+  border-color: var(--green);
+}
+.mini-step.active {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+  transform: scale(1.18);
+  box-shadow: 0 0 0 3px rgba(244,108,35,0.18);
+}
+
+/* ── CONTROLS ── */
+.carte-embed .controls {
+  position:absolute; bottom:0; left:0; right:0;
+  height:96px; padding: 0 24px;
+  display:flex; align-items:center; gap:18px;
+  background:rgba(30,34,41,0.92);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  z-index:50;
+}
+.btn {
+  width:42px; height:42px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background: var(--bg-card);
+  border:1px solid var(--border);
+  color:var(--white);
+  cursor:pointer;
+  transition: background .2s, transform .15s, border-color .2s;
+  flex-shrink: 0;
+}
+.btn:hover { background: var(--bg-card-2); border-color: var(--orange); }
+.btn:active { transform: scale(.96); }
+.btn.primary { background: var(--orange); border-color: var(--orange); }
+.btn.primary:hover { background:#e05a12; }
+.btn svg { width:16px; height:16px; }
+
+.scrubber {
+  flex:1;
+  display:flex; flex-direction:column; gap:6px;
+  min-width: 0;
+}
+.scrub-track {
+  position:relative; height:4px;
+  background: var(--border); border-radius:2px;
+  cursor:pointer;
+}
+.scrub-fill {
+  position:absolute; left:0; top:0; bottom:0;
+  background: var(--orange); border-radius:2px;
+  transition: width .25s linear;
+}
+.scrub-handle {
+  position:absolute; top:50%;
+  width:14px; height:14px; border-radius:50%;
+  background:var(--white);
+  border: 3px solid var(--orange);
+  transform: translate(-50%, -50%);
+  transition: left .25s linear;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.scrub-meta {
+  display:flex; justify-content:space-between; gap: 16px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px; color:var(--dim);
+  letter-spacing:.08em;
+}
+.scrub-step { color: var(--white); font-weight:700; }
+.scrub-meta-mid { color: var(--white); flex:1; text-align:center; }
+
+
+  .detail-left { border-right: none; max-width: none; padding-right: 0; }
+}
 
 </style>
 </head>
@@ -733,8 +1120,100 @@
       <h2 class="carte-title">Comment les LLM vous trouvent<br><em style="font-style:italic; color:#61AFEF;">— et vous citent en 9 étapes.</em></h2>
     </div>
   </div>
-  <div class="carte-frame-wrap">
-    <iframe class="carte-frame" src="IndexIA%20Carte%20Conceptuelle.html" title="Carte conceptuelle GEO IndexIA"></iframe>
+  <div class="carte-embed">
+<div class="stage">
+  <!-- CANVAS -->
+  <div class="canvas-wrap">
+    <div class="canvas">
+    <div class="legend-bar">
+      <div class="legend-wall">// MUR PERMÉABLE DU SEO</div>
+      <div class="legend-block">
+        <div class="legend-title">// QUI FAIT QUOI</div>
+        <div class="legend-items">
+          <div class="legend-item">
+            <span class="legend-chip" style="background:#98C379;">I</span>
+            <span class="legend-label">IndexIA</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-chip" style="background:#F46C23;">S</span>
+            <span class="legend-label">Agence SEO</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-chip" style="background:#E06C75;">R</span>
+            <span class="legend-label">Agence RP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="canvas-grid"></div>
+
+      <svg class="diagram" viewBox="0 0 2200 1050" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path class="s-arrow" d="M 0 0 L 10 5 L 0 10 z"/>
+          </marker>
+          <marker id="arrow-active" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path class="s-arrow-active" d="M 0 0 L 10 5 L 0 10 z"/>
+          </marker>
+        </defs>
+
+        <!-- Main title -->
+
+        <!-- Phase labels -->
+
+        <!-- Wall: solid from top to center of node 03, dashed afterwards.
+             Node 03 (seo) sits at y=370..450 so its vertical center is y=410.
+             Wall placed at x=440, between nodes 02 (LLM, x=240..420) and 03 (SEO, x=460..620). -->
+        <line class="s-wall solid"  id="wall-solid"  x1="620" y1="200" x2="620" y2="540"/>
+        <line class="s-wall dashed" id="wall-dashed" x1="620" y1="540" x2="620" y2="890"/>
+
+        <!-- legend moved to HTML -->
+
+        <!-- ======================
+             EDGES (drawn first)
+             ====================== -->
+        <g id="edges"></g>
+
+        <!-- ======================
+             NODES (rendered as <g>)
+             Each node: rect + 2-3 text rows
+             ====================== -->
+        <g id="nodes"></g>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="btn" id="btn-prev" title="Étape précédente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="btn primary" id="btn-play" title="Lecture / Pause">
+    <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+    <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+  </button>
+  <button class="btn" id="btn-next" title="Étape suivante">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <button class="btn" id="btn-restart" title="Recommencer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+  </button>
+
+  <div class="scrubber">
+    <div class="mini-rail" id="mini-rail"></div>
+    <div class="scrub-track" id="scrub-track">
+      <div class="scrub-fill" id="scrub-fill"></div>
+      <div class="scrub-handle" id="scrub-handle"></div>
+    </div>
+    <div class="scrub-meta">
+      <span><span class="scrub-step" id="meta-step">01</span> / 09</span>
+      <span class="scrub-meta-mid" id="meta-title">Requête utilisateur</span>
+      <span id="meta-time">0.0s</span>
+    </div>
+  </div>
+</div>
   </div>
 </section>
 
@@ -867,5 +1346,369 @@
 })();
 </script>
 
+<script>
+
+/* ──────────────────────────────────────────────────────────
+   NODES (SVG coordinates, viewBox 0 0 1600 800)
+─────────────────────────────────────────────────────────── */
+const NODES = {
+  user:    { x:20,   y:420, w:290, h:190, kind:'user', owners:[],
+             tag:'01 · USER',     title:'Question utilisateur',
+             sub:['Ex : « activités à','Montréal cette fin','de semaine ? »'] },
+  llm:     { x:340,  y:420, w:270, h:190, kind:'llm', owners:[],
+             tag:'02 · LLM',      title:'Détection d\'intention',
+             sub:['ChatGPT · Gemini','Claude'] },
+  seo:     { x:650,  y:460, w:230, h:130, kind:'seo', owners:[],
+             tag:'03 · MOTEUR',   title:'Recherche SEO',
+             sub:['Bing · Google · Brave'] },
+  'seo-a': { x:720,  y:190, w:340, h:190, kind:'seo', owners:['S'],
+             tag:'03A · AUTORITÉ',title:'Site bien référencé',
+             sub:['Top 10–20 résultats SEO','(mots-clés, backlinks)'] },
+  'seo-b': { x:720,  y:700, w:340, h:220, kind:'rp', owners:['I','R'],
+             tag:'03B · OU — RELATIONS PRESSE', title:'Piggyback médiatique',
+             sub:['Si le site est mal référencé,','les retombées médias récentes','→ piggyback sur le SEO des médias'] },
+  chunk:   { x:1220, y:190, w:320, h:160, kind:'idx', owners:['I','S'],
+             tag:'04 · CHUNKING', title:'Découpage / FAQ',
+             sub:['Pages → blocs courts'] },
+  vector:  { x:1220, y:390, w:320, h:160, kind:'idx', owners:['I','S'],
+             tag:'05 · VECTEUR',  title:'Vectorisation',
+             sub:['Empreinte sémantique'] },
+  match:   { x:1220, y:590, w:320, h:160, kind:'idx', owners:['I','S'],
+             tag:'06 · TOP-K',    title:'Correspondance',
+             sub:['Question ↔ blocs pertinents'] },
+  rerank:  { x:1200, y:780, w:350, h:240, kind:'idx', owners:['I'],
+             tag:'07 · GEO',      title:'Reranking',
+             sub:['Reclassés selon pertinence,','crédibilité et neutralité,','en valorisant les sources','citées dans les médias','(signaux d\'autorité \u2014 RP).'] },
+  enrich:  { x:1650, y:420, w:280, h:190, kind:'idx', owners:['I','S'],
+             tag:'08 · PROMPT',   title:'Prompt enrichi',
+             sub:['Question + Top blocs','→ LLM'] },
+  answer:  { x:1970, y:435, w:200, h:155, kind:'out', owners:[],
+             tag:'09 · OUT',      title:'Réponse',
+             sub:['Sources & citations'] },
+};
+
+const EDGES = [
+  { id:'e1', from:'user',  to:'llm',    fromSide:'right', toSide:'left' },
+  { id:'e2', from:'llm',   to:'seo',    fromSide:'right', toSide:'left' },
+  { id:'e3', from:'seo',   to:'seo-a',  fromSide:'top',   toSide:'left' },
+  { id:'e4', from:'seo',   to:'seo-b',  fromSide:'bottom',toSide:'left' },
+  { id:'e5', from:'seo-a', to:'chunk',  fromSide:'right', toSide:'left' },
+  { id:'e6', from:'seo-b', to:'chunk',  fromSide:'right', toSide:'left' },
+  { id:'e7', from:'chunk', to:'vector', fromSide:'bottom',toSide:'top'  },
+  { id:'e8', from:'vector',to:'match',  fromSide:'bottom',toSide:'top'  },
+  { id:'e9', from:'match', to:'rerank', fromSide:'bottom',toSide:'top'  },
+  { id:'e10',from:'rerank',to:'enrich', fromSide:'right', toSide:'bottom' },
+  { id:'e11',from:'enrich',to:'answer', fromSide:'right', toSide:'left' },
+];
+
+/* ──────────────────────────────────────────────────────────
+   STEPS
+─────────────────────────────────────────────────────────── */
+const STEPS = [
+  { n:1, title:'Requête utilisateur',
+    body:'Question informationnelle posée — <em>« quelles activités estivales me recommandes-tu à Montréal cette fin de semaine ? »</em>',
+    nodes:['user'], edges:[], rings:[], wall:false },
+  { n:2, title:'Détection d\'intention',
+    body:'Le <span class="b">LLM</span> comprend le besoin et génère des <span class="b">requêtes de recherche optimisées</span> (ChatGPT → Bing, Gemini → Google, Claude → Brave).',
+    nodes:['llm'], edges:['e1'], rings:[], wall:false },
+  { n:3, title:'Recherche via moteur — 2 scénarios (a OU b)',
+    body:'<span class="b">a.</span> Site bien référencé en SEO → entre directement dans la boucle. <span class="b">OU b.</span> Site mal référencé → <em>piggyback médiatique</em>&nbsp;: vous profitez du SEO des médias qui vous citent pour entrer dans la boucle.',
+    nodes:['seo','seo-a','seo-b'], edges:['e2','e3','e4'],
+    rings:['ring-seo','ring-rp'], wall:true },
+  // From step 4 onward, both 03a and 03b feed chunk (step 04). Edge e6 (03b→04) appears here.
+  { n:4, title:'Découpage du contenu (Chunking)',
+    body:'Les pages sont explorées puis <span class="b">divisées en blocs courts</span> exploitables par le LLM.',
+    nodes:['chunk'], edges:['e5','e6'], rings:['ring-indexia'], wall:true },
+  { n:5, title:'Vectorisation des contenus',
+    body:'Chaque bloc est transformé en <span class="b">vecteur</span> pour analyser le sens.',
+    nodes:['vector'], edges:['e7'], rings:['ring-indexia'], wall:true },
+  { n:6, title:'Correspondance sémantique',
+    body:'Comparaison <em>question ↔ blocs</em> → sélection des plus pertinents (<span class="b">Top-K</span>).',
+    nodes:['match'], edges:['e8'], rings:['ring-indexia'], wall:true },
+  { n:7, title:'Reranking — application du GEO',
+    body:'Les blocs sont reclassés selon <span class="b">pertinence + crédibilité + neutralité</span>, en valorisant les sources citées dans les médias.',
+    nodes:['rerank'], edges:['e9'], rings:['ring-indexia'], wall:true },
+  { n:8, title:'Enrichissement du prompt',
+    body:'Question + blocs finaux = <span class="b">prompt enrichi</span> envoyé au LLM.',
+    nodes:['enrich'], edges:['e10'], rings:['ring-indexia'], wall:true },
+  { n:9, title:'Génération et réponse',
+    body:'Le LLM <span class="b">synthétise la réponse</span> avec sources et citations, livrée à l\'utilisateur.',
+    nodes:['answer'], edges:['e11'], rings:['ring-indexia'], wall:true },
+];
+
+/* ──────────────────────────────────────────────────────────
+   SVG namespacing helpers
+─────────────────────────────────────────────────────────── */
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const make = (tag, attrs = {}) => {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+};
+
+/* Render NODES */
+const nodesG = document.getElementById('nodes');
+Object.entries(NODES).forEach(([id, n]) => {
+  const g = make('g', { class: `s-node k-${n.kind}`, id: `node-${id}` });
+  // background rect
+  g.appendChild(make('rect', {
+    class: 's-node-bg',
+    x: n.x, y: n.y, width: n.w, height: n.h,
+    rx: 8, ry: 8,
+  }));
+  // tag
+  g.appendChild(Object.assign(make('text', {
+    class: 's-node-tag mono',
+    x: n.x + 16, y: n.y + 36,
+  }), { textContent: n.tag }));
+  // title
+  g.appendChild(Object.assign(make('text', {
+    class: 's-node-label',
+    x: n.x + 16, y: n.y + 70,
+  }), { textContent: n.title }));
+  // sub lines
+  if (n.sub) {
+    n.sub.forEach((line, i) => {
+      g.appendChild(Object.assign(make('text', {
+        class: 's-node-sub',
+        x: n.x + 16, y: n.y + 100 + i * 26,
+      }), { textContent: line }));
+    });
+  }
+  // Ownership chips (bottom-right corner of node, so they don't overlap long tags)
+  const owners = n.owners || [];
+  const ownerColors = { I: '#98C379', S: '#F46C23', R: '#E06C75' };
+  owners.forEach((o, i) => {
+    const cx = n.x + n.w - 16 - (i * 22);
+    const cy = n.y + n.h - 16;
+    const chip = make('g', { class: 's-own' });
+    chip.appendChild(make('rect', {
+      x: cx - 9, y: cy - 9, width: 18, height: 18, rx: 3,
+      fill: ownerColors[o],
+    }));
+    const t = make('text', {
+      class: 's-own-letter',
+      x: cx, y: cy + 1,
+    });
+    t.textContent = o;
+    chip.appendChild(t);
+    g.appendChild(chip);
+  });
+  nodesG.appendChild(g);
+});
+
+/* Edge anchor helper */
+function anchor(id, side) {
+  const n = NODES[id];
+  const cx = n.x + n.w / 2, cy = n.y + n.h / 2;
+  switch (side) {
+    case 'left':   return [n.x,           cy];
+    case 'right':  return [n.x + n.w,     cy];
+    case 'top':    return [cx,            n.y];
+    case 'bottom': return [cx,            n.y + n.h];
+  }
+  return [cx, cy];
+}
+function bezierPath(from, fSide, to, tSide) {
+  const [x1,y1] = anchor(from, fSide);
+  const [x2,y2] = anchor(to,   tSide);
+  const horiz1 = (fSide === 'left' || fSide === 'right');
+  const horiz2 = (tSide === 'left' || tSide === 'right');
+  const dx = (x2 - x1) * 0.5, dy = (y2 - y1) * 0.5;
+  const c1x = horiz1 ? x1 + dx : x1;
+  const c1y = horiz1 ? y1      : y1 + dy;
+  const c2x = horiz2 ? x2 - dx : x2;
+  const c2y = horiz2 ? y2      : y2 - dy;
+  return `M ${x1} ${y1} C ${c1x} ${c1y}, ${c2x} ${c2y}, ${x2} ${y2}`;
+}
+
+/* Render EDGES */
+const edgesG = document.getElementById('edges');
+EDGES.forEach(e => {
+  const d = bezierPath(e.from, e.fromSide, e.to, e.toSide);
+  const path = make('path', {
+    class: 's-edge',
+    id: `edge-${e.id}`,
+    d,
+    'marker-end': 'url(#arrow)',
+  });
+  edgesG.appendChild(path);
+  // Companion pulse path (single travelling segment)
+  const pulse = make('path', {
+    class: 's-edge-pulse',
+    id: `pulse-${e.id}`,
+    d,
+  });
+  edgesG.appendChild(pulse);
+});
+
+/* Calibrate dasharray to actual path lengths */
+requestAnimationFrame(() => {
+  document.querySelectorAll('.s-edge').forEach(p => {
+    try {
+      const len = Math.ceil(p.getTotalLength()) + 4;
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.dataset.len = len;
+    } catch (e) {}
+  });
+  // Pulse paths use a short bright segment that travels the full length once
+  document.querySelectorAll('.s-edge-pulse').forEach(p => {
+    try {
+      const total = Math.ceil(p.getTotalLength());
+      const segment = Math.min(60, Math.max(28, total * 0.18));
+      p.style.strokeDasharray = `${segment} ${total}`;
+      p.style.setProperty('--len', total + segment);
+      p.style.strokeDashoffset = total + segment;
+      p.dataset.len = total;
+    } catch (e) {}
+  });
+});
+
+/* Mini rail (in controls) */
+const miniRail = document.getElementById('mini-rail');
+STEPS.forEach((s, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'mini-step';
+  dot.textContent = String(s.n).padStart(2, '0');
+  dot.title = s.title;
+  dot.addEventListener('click', () => { pause(); goTo(i); });
+  miniRail.appendChild(dot);
+});
+
+/* ──────────────────────────────────────────────────────────
+   STATE MACHINE
+─────────────────────────────────────────────────────────── */
+let current = 0;
+let playing = false;
+let timer = null;
+const STEP_MS = 2400;
+
+function applyState(idx) {
+  current = idx;
+  const step = STEPS[idx];
+
+  const visibleNodes = new Set();
+  const visibleEdges = new Set();
+  const visibleRings = new Set();
+  let showWall = false;
+
+  for (let i = 0; i <= idx; i++) {
+    const s = STEPS[i];
+    s.nodes.forEach(n => visibleNodes.add(n));
+    s.edges.forEach(e => visibleEdges.add(e));
+    s.rings.forEach(r => visibleRings.add(r));
+    if (s.wall) showWall = true;
+  }
+
+  // Nodes
+  Object.keys(NODES).forEach(id => {
+    const el = document.getElementById(`node-${id}`);
+    el.classList.toggle('visible', visibleNodes.has(id));
+    el.classList.toggle('active',  step.nodes.includes(id));
+  });
+
+  // Edges
+  EDGES.forEach(e => {
+    const el = document.getElementById(`edge-${e.id}`);
+    const len = parseFloat(el.dataset.len || 1000);
+    if (visibleEdges.has(e.id)) {
+      el.classList.add('visible');
+      el.style.strokeDashoffset = '0';
+    } else {
+      el.classList.remove('visible');
+      el.style.strokeDashoffset = len;
+    }
+    const isActive = step.edges.includes(e.id);
+    el.classList.toggle('active', isActive);
+    el.setAttribute('marker-end', isActive ? 'url(#arrow-active)' : 'url(#arrow)');
+    // Trigger single pulse traversal on active edges
+    const pulseEl = document.getElementById(`pulse-${e.id}`);
+    if (pulseEl) {
+      pulseEl.classList.remove('run');
+      if (isActive) {
+        // force reflow then re-add to restart animation
+        void pulseEl.getBoundingClientRect();
+        pulseEl.classList.add('run');
+      }
+    }
+  });
+
+  // (Rings removed — ownership chips on each node + legend instead.)
+
+  // Wall (two segments)
+  document.getElementById('wall-solid').classList.toggle('visible', showWall);
+  document.getElementById('wall-dashed').classList.toggle('visible', showWall);
+
+  // Detail (mini rail meta only — detail strip removed)
+  const dn = document.getElementById('detail-num');
+  if (dn) dn.textContent = `Étape ${step.n} / 9`;
+  const dt = document.getElementById('detail-title');
+  if (dt) dt.textContent = step.title;
+  const db = document.getElementById('detail-body');
+  if (db) db.innerHTML = step.body;
+
+  // Mini rail
+  document.querySelectorAll('.mini-step').forEach((it, i) => {
+    it.classList.toggle('active', i === idx);
+    it.classList.toggle('done',   i <  idx);
+  });
+
+  // Scrub
+  const pct = STEPS.length === 1 ? 100 : (idx / (STEPS.length - 1)) * 100;
+  document.getElementById('scrub-fill').style.width = `${pct}%`;
+  document.getElementById('scrub-handle').style.left = `${pct}%`;
+  document.getElementById('meta-step').textContent = String(step.n).padStart(2, '0');
+  document.getElementById('meta-title').textContent = step.title;
+  document.getElementById('meta-time').textContent = `${(idx * STEP_MS / 1000).toFixed(1)}s`;
+}
+
+function goTo(i) {
+  if (i < 0) i = 0;
+  if (i >= STEPS.length) { pause(); i = STEPS.length - 1; }
+  applyState(i);
+}
+
+function play() {
+  if (current >= STEPS.length - 1) goTo(0);
+  playing = true;
+  document.getElementById('icon-play').style.display = 'none';
+  document.getElementById('icon-pause').style.display = '';
+  clearInterval(timer);
+  timer = setInterval(() => {
+    if (current >= STEPS.length - 1) { pause(); return; }
+    goTo(current + 1);
+  }, STEP_MS);
+}
+function pause() {
+  playing = false;
+  document.getElementById('icon-play').style.display = '';
+  document.getElementById('icon-pause').style.display = 'none';
+  clearInterval(timer);
+}
+
+document.getElementById('btn-play').addEventListener('click', () => playing ? pause() : play());
+document.getElementById('btn-prev').addEventListener('click', () => { pause(); goTo(current - 1); });
+document.getElementById('btn-next').addEventListener('click', () => { pause(); goTo(current + 1); });
+document.getElementById('btn-restart').addEventListener('click', () => { pause(); goTo(0); });
+
+document.getElementById('scrub-track').addEventListener('click', (e) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - r.left) / r.width;
+  const idx = Math.round(pct * (STEPS.length - 1));
+  pause(); goTo(idx);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') { pause(); goTo(current + 1); }
+  if (e.key === 'ArrowLeft')  { pause(); goTo(current - 1); }
+  if (e.key === ' ')          { e.preventDefault(); playing ? pause() : play(); }
+});
+
+/* Init */
+applyState(0);
+setTimeout(play, 800);
+
+</script>
 </body>
 </html>
