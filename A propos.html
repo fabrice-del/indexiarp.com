@@ -191,6 +191,7 @@
   .avantages-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     border: 1px solid var(--line);
     border-radius: 2px;
     overflow: hidden;
@@ -199,6 +200,7 @@
   .avantage-card {
     padding: 56px 44px 60px;
     border-right: 1px solid var(--line);
+    border-radius: 2px;
     position: relative;
     overflow: hidden;
     cursor: default;
@@ -211,7 +213,6 @@
 
   .avantage-card:nth-child(2) { transition-delay: 0.12s; }
   .avantage-card:nth-child(3) { transition-delay: 0.24s; }
-  .avantage-card:last-child   { border-right: none; }
 
   .avantage-card.is-visible { opacity: 1; transform: translateY(0); }
 
