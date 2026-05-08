@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IndexIA — Carte conceptuelle GEO</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #282C34;
-  --bg-alt:  #1E2229;
-  --bg-card: #2E3440;
-  --bg-card-2: #333844;
+  --bg:      #0F1115;
+  --bg-alt:  #0F1115;
+  --bg-card: #181B21;
+  --bg-card-2: #1E2229;
   --blue:    #61AFEF;
   --green:   #98C379;
   --purple:  #C678DD;
@@ -24,7 +24,7 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html, body { width:100%; height:100%; overflow:hidden; }
 body {
-  font-family:'DM Sans',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg-alt);
   color:var(--white);
 }
@@ -93,7 +93,7 @@ body {
   position:absolute; inset:0;
   width:100%; height:100%;
 }
-.diagram text { font-family:'DM Sans', sans-serif; }
+.diagram text { font-family:'Inter', sans-serif; }
 .diagram .mono { font-family:'JetBrains Mono', monospace; }
 
 /* SVG element states */
@@ -118,9 +118,9 @@ body {
 .s-node.visible .s-node-label,
 .s-node.visible .s-node-tag,
 .s-node.visible .s-node-sub { opacity: 1; }
-.s-node-tag   { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
-.s-node-label { font-size: 14px; font-weight: 600; fill: var(--white); }
-.s-node-sub   { font-size: 12px; fill: var(--dim); }
+.s-node-tag   { font-size: 18px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
+.s-node-label { font-size: 26px; font-weight: 600; fill: var(--white); }
+.s-node-sub   { font-size: 18px; fill: var(--dim); }
 
 .s-node.k-user .s-node-tag { fill: var(--blue);   }
 .s-node.k-llm  .s-node-tag { fill: var(--purple); }
@@ -230,7 +230,7 @@ body {
   fill: var(--dim);
 }
 .s-main-title {
-  font-family:'DM Sans', sans-serif;
+  font-family:'Instrument Serif', Georgia, serif;
   font-size: 26px; font-weight: 700; letter-spacing: -0.5px;
   fill: var(--orange);
 }
@@ -375,7 +375,7 @@ body {
     <div class="canvas">
       <div class="canvas-grid"></div>
 
-      <svg class="diagram" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid meet">
+      <svg class="diagram" viewBox="0 0 2200 1050" preserveAspectRatio="xMidYMid meet">
         <defs>
           <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path class="s-arrow" d="M 0 0 L 10 5 L 0 10 z"/>
@@ -394,11 +394,11 @@ body {
         <!-- Wall: solid from top to center of node 03, dashed afterwards.
              Node 03 (seo) sits at y=370..450 so its vertical center is y=410.
              Wall placed at x=440, between nodes 02 (LLM, x=240..420) and 03 (SEO, x=460..620). -->
-        <line class="s-wall solid"  id="wall-solid"  x1="440" y1="180" x2="440" y2="410"/>
-        <line class="s-wall dashed" id="wall-dashed" x1="440" y1="410" x2="440" y2="680"/>
+        <line class="s-wall solid"  id="wall-solid"  x1="620" y1="200" x2="620" y2="540"/>
+        <line class="s-wall dashed" id="wall-dashed" x1="620" y1="540" x2="620" y2="890"/>
 
         <!-- Ownership legend (horizontal, top-right) -->
-        <g class="s-legend" transform="translate(900, 60)">
+        <g class="s-legend" transform="translate(1180, 60)">
           <text class="s-phase" x="0" y="-8">// QUI FAIT QUOI</text>
 
           <g transform="translate(0, 14)">
@@ -471,37 +471,37 @@ body {
    NODES (SVG coordinates, viewBox 0 0 1600 800)
 ─────────────────────────────────────────────────────────── */
 const NODES = {
-  user:    { x:30,   y:340, w:200, h:120, kind:'user', owners:[],
+  user:    { x:20,   y:420, w:290, h:190, kind:'user', owners:[],
              tag:'01 · USER',     title:'Question utilisateur',
              sub:['Ex : « activités à','Montréal cette fin','de semaine ? »'] },
-  llm:     { x:240,  y:340, w:180, h:120, kind:'llm', owners:[],
+  llm:     { x:340,  y:420, w:270, h:190, kind:'llm', owners:[],
              tag:'02 · LLM',      title:'Détection d\'intention',
              sub:['ChatGPT · Gemini','Claude'] },
-  seo:     { x:460,  y:370, w:160, h:80,  kind:'seo', owners:[],
+  seo:     { x:650,  y:460, w:230, h:130, kind:'seo', owners:[],
              tag:'03 · MOTEUR',   title:'Recherche SEO',
              sub:['Bing · Google · Brave'] },
-  'seo-a': { x:520,  y:160, w:230, h:120, kind:'seo', owners:['S'],
+  'seo-a': { x:720,  y:190, w:340, h:190, kind:'seo', owners:['S'],
              tag:'03A · AUTORITÉ',title:'Site bien référencé',
              sub:['Top 10–20 résultats SEO','(mots-clés, backlinks)'] },
-  'seo-b': { x:520,  y:540, w:230, h:140, kind:'rp', owners:['I','R'],
+  'seo-b': { x:720,  y:700, w:340, h:220, kind:'rp', owners:['I','R'],
              tag:'03B · OU — RELATIONS PRESSE', title:'Piggyback médiatique',
              sub:['Si le site est mal référencé,','les retombées médias récentes','→ piggyback sur le SEO des médias'] },
-  chunk:   { x:920,  y:160, w:220, h:90,  kind:'idx', owners:['I','S'],
+  chunk:   { x:1220, y:190, w:320, h:160, kind:'idx', owners:['I','S'],
              tag:'04 · CHUNKING', title:'Découpage / FAQ',
              sub:['Pages → blocs courts'] },
-  vector:  { x:920,  y:280, w:220, h:90,  kind:'idx', owners:['I','S'],
+  vector:  { x:1220, y:390, w:320, h:160, kind:'idx', owners:['I','S'],
              tag:'05 · VECTEUR',  title:'Vectorisation',
              sub:['Empreinte sémantique'] },
-  match:   { x:920,  y:400, w:220, h:90,  kind:'idx', owners:['I','S'],
+  match:   { x:1220, y:590, w:320, h:160, kind:'idx', owners:['I','S'],
              tag:'06 · TOP-K',    title:'Correspondance',
              sub:['Question ↔ blocs pertinents'] },
-  rerank:  { x:910,  y:515, w:240, h:160, kind:'idx', owners:['I'],
+  rerank:  { x:1200, y:780, w:350, h:240, kind:'idx', owners:['I'],
              tag:'07 · GEO',      title:'Reranking',
              sub:['Reclassés selon pertinence,','crédibilité et neutralité,','en valorisant les sources','citées dans les médias','(signaux d\'autorité \u2014 RP).'] },
-  enrich:  { x:1230, y:340, w:180, h:120, kind:'idx', owners:['I','S'],
+  enrich:  { x:1650, y:420, w:280, h:190, kind:'idx', owners:['I','S'],
              tag:'08 · PROMPT',   title:'Prompt enrichi',
              sub:['Question + Top blocs','→ LLM'] },
-  answer:  { x:1450, y:355, w:130, h:90,  kind:'out', owners:[],
+  answer:  { x:1970, y:435, w:200, h:155, kind:'out', owners:[],
              tag:'09 · OUT',      title:'Réponse',
              sub:['Sources & citations'] },
 };
@@ -578,19 +578,19 @@ Object.entries(NODES).forEach(([id, n]) => {
   // tag
   g.appendChild(Object.assign(make('text', {
     class: 's-node-tag mono',
-    x: n.x + 14, y: n.y + 22,
+    x: n.x + 16, y: n.y + 36,
   }), { textContent: n.tag }));
   // title
   g.appendChild(Object.assign(make('text', {
     class: 's-node-label',
-    x: n.x + 14, y: n.y + 46,
+    x: n.x + 16, y: n.y + 70,
   }), { textContent: n.title }));
   // sub lines
   if (n.sub) {
     n.sub.forEach((line, i) => {
       g.appendChild(Object.assign(make('text', {
         class: 's-node-sub',
-        x: n.x + 14, y: n.y + 66 + i * 17,
+        x: n.x + 16, y: n.y + 100 + i * 26,
       }), { textContent: line }));
     });
   }
