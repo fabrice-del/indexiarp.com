@@ -1537,22 +1537,30 @@ const make = (tag, attrs = {}) => {
 /* Render NODES */
 const nodesG = document.getElementById('nodes');
 Object.entries(NODES).forEach(([id, n]) => {
-  const g = make('g', { class: `s-node k-${n.kind}`, id: `node-${id}` });
+  const g = make('g', { class: `s-node k-${n.kind}`, id: `node-${id}`, opacity: '0' });
   // background rect
   g.appendChild(make('rect', {
     class: 's-node-bg',
     x: n.x, y: n.y, width: n.w, height: n.h,
     rx: 8, ry: 8,
+    fill: '#1E2229',
+    stroke: 'rgba(248,248,248,0.10)',
+    'stroke-width': '1',
   }));
   // tag
+  const tagColors = { user:'#61AFEF', llm:'#C678DD', seo:'#F46C23', rp:'#E06C75', idx:'#98C379', out:'#E5C07B' };
   g.appendChild(Object.assign(make('text', {
     class: 's-node-tag mono',
     x: n.x + 16, y: n.y + 36,
+    fill: tagColors[n.kind] || '#7A8294',
+    'font-size': '13', 'font-weight': '700', 'letter-spacing': '0.12em',
   }), { textContent: n.tag }));
   // title
   g.appendChild(Object.assign(make('text', {
     class: 's-node-label',
     x: n.x + 16, y: n.y + 70,
+    fill: '#F8F8F8',
+    'font-size': '22', 'font-weight': '600',
   }), { textContent: n.title }));
   // sub lines
   if (n.sub) {
@@ -1560,6 +1568,8 @@ Object.entries(NODES).forEach(([id, n]) => {
       g.appendChild(Object.assign(make('text', {
         class: 's-node-sub',
         x: n.x + 16, y: n.y + 100 + i * 26,
+        fill: 'rgba(248,248,248,0.80)',
+        'font-size': '18',
       }), { textContent: line }));
     });
   }
@@ -1692,8 +1702,19 @@ function applyState(idx) {
   // Nodes
   Object.keys(NODES).forEach(id => {
     const el = document.getElementById(`node-${id}`);
-    el.classList.toggle('visible', visibleNodes.has(id));
-    el.classList.toggle('active',  step.nodes.includes(id));
+    const isVisible = visibleNodes.has(id);
+    const isActive  = step.nodes.includes(id);
+    el.classList.toggle('visible', isVisible);
+    el.classList.toggle('active',  isActive);
+    // Force visibility via SVG attribute — bypasses Elementor CSS scoping
+    el.setAttribute('opacity', isVisible ? '1' : '0');
+    // Force active highlight on background rect
+    const bg = el.querySelector('rect');
+    if (bg) {
+      bg.setAttribute('fill', isActive ? '#1E2229' : '#1E2229');
+      bg.setAttribute('stroke', isActive ? '#F46C23' : 'rgba(248,248,248,0.10)');
+      bg.setAttribute('stroke-width', isActive ? '2' : '1');
+    }
   });
 
   // Edges
@@ -1703,12 +1724,17 @@ function applyState(idx) {
     if (visibleEdges.has(e.id)) {
       el.classList.add('visible');
       el.style.strokeDashoffset = '0';
+      el.style.stroke = '#F46C23';
+      el.style.strokeWidth = '2';
     } else {
       el.classList.remove('visible');
       el.style.strokeDashoffset = len;
+      el.style.stroke = 'rgba(248,248,248,0.22)';
+      el.style.strokeWidth = '1.6';
     }
     const isActive = step.edges.includes(e.id);
     el.classList.toggle('active', isActive);
+    if (isActive) { el.style.stroke = '#F46C23'; el.style.strokeWidth = '2.4'; }
     el.setAttribute('marker-end', isActive ? 'url(#arrow-active)' : 'url(#arrow)');
     // Trigger single pulse traversal on active edges
     const pulseEl = document.getElementById(`pulse-${e.id}`);
