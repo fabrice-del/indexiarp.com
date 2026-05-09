@@ -1005,32 +1005,26 @@
 
 /* Mini step rail inside header (replaces left rail) */
 .mini-rail {
-  display:flex; align-items:center; gap:6px;
+  display:flex; align-items:center; gap:14px;
 }
 .mini-step {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'JetBrains Mono', monospace;
-  font-size: 10px; font-weight: 700;
   background: transparent;
-  color: var(--dim);
-  border: 1px solid var(--border);
+  border: none;
+  padding: 0;
+  font-family:'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.20);
   cursor: pointer;
-  transition: all .2s;
+  transition: color .25s ease;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
-.mini-step:hover { border-color: var(--white); color: var(--white); }
-.mini-step.done {
-  background: var(--green);
-  color: var(--bg);
-  border-color: var(--green);
-}
+.mini-step:hover { color: rgba(255,255,255,0.55); }
+.mini-step.done  { color: var(--orange); opacity: 0.55; }
 .mini-step.active {
-  background: var(--orange);
-  color: var(--white);
-  border-color: var(--orange);
-  transform: scale(1.18);
-  box-shadow: 0 0 0 3px rgba(244,108,35,0.18);
+  color: var(--orange);
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(244,108,35,0.45);
 }
 
 /* ── CONTROLS ── */
@@ -1573,7 +1567,7 @@ const miniRail = document.getElementById('mini-rail');
 STEPS.forEach((s, i) => {
   const dot = document.createElement('button');
   dot.className = 'mini-step';
-  dot.textContent = String(s.n).padStart(2, '0');
+  dot.textContent = '</' + String(s.n).padStart(2, '0') + '>';
   dot.title = s.title;
   dot.addEventListener('click', () => { pause(); goTo(i); });
   miniRail.appendChild(dot);
