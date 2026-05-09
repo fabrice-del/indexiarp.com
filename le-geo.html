@@ -1537,7 +1537,7 @@ const make = (tag, attrs = {}) => {
 /* Render NODES */
 const nodesG = document.getElementById('nodes');
 Object.entries(NODES).forEach(([id, n]) => {
-  const g = make('g', { class: `s-node k-${n.kind}`, id: `node-${id}`, opacity: '0.18' });
+  const g = make('g', { class: `s-node k-${n.kind}`, id: `node-${id}`, opacity: '0.40' });
   // background rect
   g.appendChild(make('rect', {
     class: 's-node-bg',
@@ -1707,7 +1707,7 @@ function applyState(idx) {
     el.classList.toggle('visible', isVisible);
     el.classList.toggle('active',  isActive);
     // Force visibility via SVG attribute — bypasses Elementor CSS scoping
-    el.setAttribute('opacity', isVisible ? '1' : '0.18');
+    el.setAttribute('opacity', isVisible ? '1' : '0.40');
     // Force active highlight on background rect
     const bg = el.querySelector('rect');
     if (bg) {
