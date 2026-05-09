@@ -643,11 +643,6 @@
     height: 100%;
     object-fit: cover;
     filter: grayscale(0.3) contrast(1.05);
-    transition: filter 0.6s, transform 0.8s;
-  }
-  .about-image-wrap:hover img {
-    filter: grayscale(0) contrast(1.1);
-    transform: scale(1.03);
   }
   .about-image::before {
     content: '';
@@ -660,9 +655,7 @@
     z-index: -1;
     transition: transform 0.6s;
   }
-  .about-image:hover::before {
-    transform: translate(-8px, -8px);
-  }
+
 
   .about-text h2 {
     font-size: clamp(40px, 5vw, 64px);
@@ -1494,7 +1487,7 @@
 
         <div class="about-signature">
           <div>
-            <div class="about-sig-name">— Le fondateur</div>
+            <div class="about-sig-name">— Fabrice Giguère</div>
             <div class="about-sig-role">Stratégie · Relations publiques · GEO</div>
           </div>
         </div>
