@@ -11,6 +11,7 @@
 <style>
   :root {
     --orange:  #F46C23;
+    --orange-2: #FF8547;
     --blue:    #61AFEF;
     --green:   #98C379;
     --purple:  #C678DD;
@@ -1090,6 +1091,82 @@
   .detail-left { border-right: none; max-width: none; padding-right: 0; }
 }
 
+
+  /* ════════════════════════════════════════════════════════════════════
+     SECTION CTA — Prêt à être cité par les IA
+     ════════════════════════════════════════════════════════════════════ */
+  .section-cta {
+    padding: 180px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(244, 108, 35, 0.08) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .cta-content { position: relative; z-index: 2; }
+
+  .cta-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+
+  .cta-content p {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 560px;
+    margin: 0 auto 48px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--orange);
+    color: #000;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    padding: 20px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--orange-2);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(244, 108, 35, 0.3);
+  }
+  .btn-primary:hover::before { transform: translateY(0); }
+  .btn-primary span { position: relative; z-index: 2; }
+  .btn-primary::after {
+    content: '→';
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover::after { transform: translateX(4px); }
+
+  @media (max-width: 768px) {
+    .section-cta { padding: 120px 0; }
+  }
+
 </style>
 </head>
 <body>
@@ -1705,5 +1782,21 @@ applyState(0);
 setTimeout(play, 800);
 
 </script>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     SECTION CTA — Prêt à être cité par les IA
+     ════════════════════════════════════════════════════════════════════ -->
+<section class="section-cta">
+  <div class="container">
+    <div class="cta-content" data-reveal>
+      <h2>Prêt à être<br><em>cité</em> par les IA&nbsp;?</h2>
+      <p>Si vous voulez en savoir plus sur ce que les LLMs disent sur vous et comment optimiser votre visibilité, commençons par un audit complet.</p>
+      <a href="https://indexiarp.com/nous-contacter/" class="btn-primary">
+        <span>Contactez-nous</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
