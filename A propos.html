@@ -834,13 +834,13 @@
 
 /* SVG element states */
 .s-node-bg {
-  fill: var(--bg-card);
+  fill: #1E2229;
   stroke: rgba(248,248,248,0.10);
   stroke-width: 1;
   opacity: 0.18;
   transition: opacity .45s ease, fill .45s ease, stroke .45s ease, stroke-width .45s ease;
 }
-.s-node.visible .s-node-bg { opacity: 1; }
+.s-node.visible .s-node-bg { opacity: 1 !important; }
 .s-node.active  .s-node-bg {
   fill: var(--bg-card-2);
   stroke: var(--orange);
@@ -853,7 +853,7 @@
 }
 .s-node.visible .s-node-label,
 .s-node.visible .s-node-tag,
-.s-node.visible .s-node-sub { opacity: 1; }
+.s-node.visible .s-node-sub { opacity: 1 !important; }
 .s-node-tag   { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; fill: var(--dim); }
 .s-node-label { font-size: 22px; font-weight: 600; fill: var(--white); }
 .s-node-sub   { font-size: 18px; fill: rgba(248,248,248,0.80); }
