@@ -1,21 +1,21 @@
 # IndexIA Relations Publiques
 
-> IndexIA est la première agence spécialisée en relations publiques et en Generative Engine Optimization (GEO) au Québec. En fusionnant l'expertise RP traditionnelle avec l'optimisation technique pour les LLM, IndexIA aide les entreprises à être citées et recommandées par les modèles d'IA génératifs comme ChatGPT, Perplexity, Gemini et Claude. Les services incluent des audits GEO, le développement de stratégies de contenu, l'implémentation de données structurées et le suivi des métriques de visibilité IA.
+> IndexIA est une agence specialisee en relations publiques et en Generative Engine Optimization (GEO) au Quebec. En fusionnant l'expertise RP traditionnelle avec l'optimisation technique pour les LLM, IndexIA aide les entreprises a etre citees et recommandees par les modeles d'IA generatifs comme ChatGPT, Perplexity, Gemini et Claude. Les services incluent des audits GEO, le developpement de strategies de contenu, l'implementation de donnees structurees et le suivi des metriques de visibilite IA.
 
 ## Pages principales
 
-- [Accueil](https://indexiarp.com/): Page d'introduction à IndexIA présentant la mission de l'agence, les statistiques clés sur le GEO, et l'approche unique combinant relations publiques traditionnelles et optimisation pour les modèles de langage. Inclut une démonstration interactive du fonctionnement des LLM.
-- [Le GEO](https://indexiarp.com/a-propos/): Explication complète et technique du Generative Engine Optimization — comment les LLM détectent, évaluent et citent les sources en 9 étapes, de la requête utilisateur à la réponse générée. Inclut une carte conceptuelle interactive.
-- [Nos services](https://indexiarp.com/our-services/): Détail des services offerts par IndexIA — audit GEO, stratégie de relations publiques optimisée pour l'IA, piggyback médiatique, implémentation de données structurées et suivi des métriques de visibilité dans les réponses IA.
-- [Notre approche](https://indexiarp.com/notre-approche/): Méthodologie IndexIA détaillant comment l'agence combine plus de 20 ans d'expertise en relations publiques avec les techniques d'optimisation pour les LLM afin d'améliorer la visibilité des marques dans les contenus générés par l'IA.
-- [FAQ](https://indexiarp.com/faq/): Questions fréquentes sur le GEO, les modèles de langage et les relations publiques. Ressource essentielle pour comprendre comment le GEO peut bénéficier aux marques et clarifier les services offerts par IndexIA.
-- [Contactez-nous](https://indexiarp.com/nous-contacter/): Formulaire de contact pour initier une consultation, demander un audit GEO ou discuter d'une stratégie de relations publiques adaptée aux environnements de recherche pilotés par l'IA.
-- [Politique de confidentialité](https://indexiarp.com/politique-de-confidentialite/): Politique détaillant la collecte, l'utilisation et la protection des données des utilisateurs du site indexiarp.com.
+- [Accueil](https://indexiarp.com/): Page d'introduction a IndexIA presentant la mission de l'agence, les statistiques cles sur le GEO, et l'approche unique combinant relations publiques traditionnelles et optimisation pour les modeles de langage. Inclut une demonstration interactive du fonctionnement des LLM.
+- [Le GEO](https://indexiarp.com/a-propos/): Explication complete et technique du Generative Engine Optimization -- comment les LLM detectent, evaluent et citent les sources en 9 etapes, de la requete utilisateur a la reponse generee. Inclut une carte conceptuelle interactive.
+- [Nos services](https://indexiarp.com/our-services/): Detail des services offerts par IndexIA -- audit GEO, strategie de relations publiques optimisee pour l'IA, piggyback mediatique, implementation de donnees structurees et suivi des metriques de visibilite dans les reponses IA.
+- [Notre approche](https://indexiarp.com/notre-approche/): Methodologie IndexIA detaillant comment l'agence combine plus de 20 ans d'expertise en relations publiques avec les techniques d'optimisation pour les LLM afin d'ameliorer la visibilite des marques dans les contenus generes par l'IA.
+- [FAQ](https://indexiarp.com/faq/): Questions frequentes sur le GEO, les modeles de langage et les relations publiques. Ressource essentielle pour comprendre comment le GEO peut beneficier aux marques et clarifier les services offerts par IndexIA.
+- [Contactez-nous](https://indexiarp.com/nous-contacter/): Formulaire de contact pour initier une consultation, demander un audit GEO ou discuter d'une strategie de relations publiques adaptee aux environnements de recherche pilotes par l'IA.
+- [Politique de confidentialite](https://indexiarp.com/politique-de-confidentialite/): Politique detaillant la collecte, l'utilisation et la protection des donnees des utilisateurs du site indexiarp.com.
 
-## À propos
+## A propos
 
-- Fondateur : Fabrice Giguère
-- Localisation : Montréal, Québec, Canada
+- Fondateur : Fabrice Giguere
+- Localisation : Montreal, Quebec, Canada
 - Secteur : Relations publiques, Generative Engine Optimization (GEO)
-- Langue : Français (fr-CA)
+- Langue : Francais (fr-CA)
 - LinkedIn : https://www.linkedin.com/company/indexia-relations-publiques
