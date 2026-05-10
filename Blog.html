@@ -56,8 +56,9 @@
 
   /* ── HERO ── */
   .blog-hero {
-    padding: 100px 0 160px;
+    padding: 100px 0 80px;
     position: relative;
+    z-index: 1;
     background:
       radial-gradient(circle at 15% 60%, rgba(244,108,35,0.09) 0%, transparent 55%),
       var(--bg);
@@ -66,19 +67,19 @@
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 180px;
+    height: 100px;
     background: linear-gradient(to bottom, transparent, var(--bg));
     pointer-events: none;
-    z-index: 3;
+    z-index: 2;
   }
   .blog-hero-grid {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: -120px;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image:
       linear-gradient(var(--line-2) 1px, transparent 1px),
       linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: linear-gradient(to bottom, black 40%, transparent 90%);
+    mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
     pointer-events: none;
     z-index: 1;
   }
@@ -116,8 +117,9 @@
 
   /* ── BLOG GRID ── */
   .blog-section {
-    padding: 0 0 120px;
-    position: relative; z-index:2;
+    padding: 40px 0 120px;
+    position: relative;
+    z-index: 10;
   }
 
   .ixia-blog-grid {
@@ -141,6 +143,8 @@
     transform: translateY(-6px);
     border-color: var(--orange);
     box-shadow: 0 20px 60px rgba(244,108,35,0.12);
+    position: relative;
+    z-index: 20;
   }
 
   .ixia-card-img-wrap {
