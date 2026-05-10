@@ -1,0 +1,171 @@
+# IndexIA Relations Publiques — llms-full.txt
+
+> IndexIA est une agence specialisee en relations publiques et en Generative Engine Optimization (GEO) au Quebec. En fusionnant l'expertise RP traditionnelle avec l'optimisation technique pour les LLM, IndexIA aide les entreprises a etre citees et recommandees par les modeles d'IA generatifs comme ChatGPT, Perplexity, Gemini et Claude.
+
+---
+
+## Page : Accueil
+URL: https://indexiarp.com/
+
+IndexIA — L'IA vous voit. Aidez-la a vous comprendre.
+
+### Qu'est-ce que le GEO ?
+
+Le Generative Engine Optimization. Pensez au SEO, mais applique a ChatGPT, Perplexity et Gemini. Une nouvelle discipline qui definit votre visibilite dans les reponses generees par l'intelligence artificielle.
+
+Statistiques cles :
+- Environ 93 % des sessions de recherche IA se terminent sans aucune visite (clic) vers un site web, ce qui rend l'apparition directe dans la reponse de l'IA absolument indispensable.
+- Environ 80 % des URL citees par les modeles d'IA ne se classent meme pas dans le top 100 des resultats de Google pour la requete initiale, prouvant que le SEO classique ne suffit plus.
+- L'optimisation basee sur les entites est 3 fois plus efficace que le SEO traditionnel, et l'implementation de donnees structurees genere une augmentation de 44 % des citations par l'IA.
+- Les citations de l'IA fluctuent de 40 a 60 % d'un mois a l'autre et une marque peut perdre jusqu'a 36 % de sa visibilite en seulement 5 semaines sans un suivi continu.
+
+### Services resumes
+
+01 Audit GEO — Analyse complete de votre presence actuelle dans les moteurs IA.
+02 Strategie de contenu — Creation et optimisation de contenus structures. Relations de presse pour les medias d'autorite reconnus par les LLM.
+03 Donnees structurees — Evaluation des balises semantiques, corrections et creation de pages Wikidata.
+04 Suivi et monitorage — Mesure continue de votre visibilite, detection des changements, ajustements strategiques.
+
+### Notre avantage
+
+IndexIA combine 20 ans d'expertise en relations publiques avec une capacite d'optimisation technique unique. La ou les agences SEO ajoutent le GEO en extension, et ou les agences de communication travaillent les contenus et relations medias separement, nous integrons ces expertises de facon synchronisee pour influencer efficacement les reponses des LLM.
+
+---
+
+## Page : Le GEO
+URL: https://indexiarp.com/a-propos/
+
+Premiere agence specialisee en relations publiques et GEO au Quebec.
+
+IndexIA combine plus de 20 ans d'expertise en relations publiques aux techniques et processus des LLM.
+
+### Comment les LLM vous trouvent en 9 etapes
+
+01 Requete utilisateur — Question informationnelle posee par l'utilisateur.
+02 Detection d'intention — Le LLM comprend le besoin et genere des requetes de recherche optimisees.
+03 Recherche via moteur — Deux scenarios : (a) Site bien reference en SEO entre directement dans la boucle. (b) Site mal reference : piggyback mediatique via les medias qui vous citent.
+04 Chunking — Les pages sont divisees en blocs courts exploitables par le LLM.
+05 Vectorisation — Chaque bloc est transforme en vecteur pour analyser le sens.
+06 Correspondance semantique — Comparaison question / blocs, selection des plus pertinents (Top-K).
+07 Reranking GEO — Les blocs sont reclasses selon pertinence, credibilite et neutralite, en valorisant les sources citees dans les medias.
+08 Enrichissement du prompt — Question + blocs finaux = prompt enrichi envoye au LLM.
+09 Generation et reponse — Le LLM synthetise la reponse avec sources et citations.
+
+### Pourquoi IndexIA
+
+01 Guichet unique — Un seul partenaire. Toute la chaine GEO. Relations publiques, creation de contenu et signaux techniques sans coordination inter-agences.
+02 Competences transversales — La redaction RP claire, segmentee en idees courtes est exactement ce que les LLM exigent.
+03 Autorite — Notre expertise en relations de presse permet de batir un niveau d'autorite que les modeles d'IA detectent et privilegient.
+
+### Donnees industrie
+
+- Mentions de marque : correlation 0.664 avec la probabilite d'etre cite par l'IA — le signal le plus fort.
+- Backlinks traditionnels : correlation 0.218 — moins determinant qu'une presence dans les medias de reference.
+- +40 % de visibilite dans les reponses IA avec les methodes GEO.
+- Source : Etude GEO, Universite de Princeton (2024)
+
+---
+
+## Page : Nos services
+URL: https://indexiarp.com/our-services/
+
+Relations publiques et GEO, ensemble. IndexIA combine l'expertise traditionnelle des relations publiques avec l'optimisation pour les moteurs generatifs.
+
+### 01 Strategie de communication
+Planification strategique qui aligne objectifs d'affaires, messages et exigences des moteurs generatifs.
+- Elaboration de strategies pour projet specifique, campagne ou planification annuelle
+- Declinaisons strategiques alignees avec vos objectifs d'affaires
+- Recherche et analyse : veille, benchmarks, cartographie
+- Integration du GEO dans votre roadmap communication existante
+
+### 02 Relations de presse
+Adaptee pour les modeles d'IA generatifs. Chaque element est pense en fonction des processus des LLM.
+- Redaction specialisee : messages cles, questions et reponses, communiques
+- Gestion des relations avec les journalistes, pitchs medias
+- Formation en techniques d'entrevues pour porte-paroles
+- Coordination des entrevues et veille mediatique
+
+Un seul article bien place dans Les Affaires ou Le Devoir peut faire plus pour votre visibilite dans ChatGPT qu'une annee de contenu proprietaire. Les LLM font confiance aux medias d'autorite.
+
+### 03 Audit GEO de contenus
+Analyse 01 — Visibilite IA : comment ChatGPT, Perplexity, Gemini et Claude repondent aux questions cles. Votre entreprise est-elle citee ? Dans quel contexte ?
+Analyse 02 — Presence mediatique : cartographie de votre couverture, identification des medias citant votre expertise.
+Analyse 03 — Structure web : evaluation des donnees structurees, metadonnees, opportunites d'enrichissement factuel.
+
+### 04 Optimisation de contenus
+- Nouveaux contenus optimises GEO avec methodologie "chunked"
+- Enrichissement avec statistiques verifiables et citations d'autorite
+- Restructuration de contenus existants pour faciliter l'extraction par les LLM
+
+### 05 Formation et accompagnement
+Formation et transfert de competences GEO pour vos equipes internes.
+
+---
+
+## Page : Notre approche
+URL: https://indexiarp.com/notre-approche/
+
+Le GEO ne fonctionne pas en silo. Il repose sur un ecosysteme ou contenu, relations de presse et signaux techniques travaillent ensemble.
+
+### Positionnement concurrentiel
+
+Agences SEO traditionnelles : expertise technique sans autorite externe. Les mentions de marque sont plus de 3x plus predictives d'une citation IA qu'un backlink classique.
+
+Agences de communication : relations medias sans optimisation IA. Le placement mediatique est fait pour l'audience humaine, pas pour l'indexation par les LLM.
+
+IndexIA combine les deux — une strategie ou contenu, couverture mediatique et signaux techniques se renforcent mutuellement.
+
+### Relations medias orientees donnees
+
+01 Selection des medias basee sur les donnees — Signaux informatiques mesurables pour identifier les medias ayant une reelle autorite aupres des LLM.
+02 Medias influents ≠ medias influents pour l'IA — Un media influent dans l'opinion publique n'est pas necessairement influent pour l'IA.
+03 Exploiter la force de la credibilite — Les LLM valorisent la corroboration et la coherence des sources plutot que le simple volume de mentions.
+
+### Optimisation du contenu pour les LLM
+
+01 Structure — Contenu clair, segmente, avec paragraphes independants pouvant se suffire a eux-memes.
+02 Coherence — Optimisation des contenus existants en coherence avec les actions medias.
+03 Autorite — Optimisation des elements techniques et informationnels pour faciliter la comprehension par les LLM.
+
+---
+
+## Page : FAQ
+URL: https://indexiarp.com/faq/
+
+### Le GEO remplace-t-il le SEO ?
+Non. Le SEO vous rend trouvable. Le GEO vous rend citable. Le SEO reste la fondation. Environ 80 % des URL citees dans ChatGPT, Perplexity, Copilot et AI Mode ne se classent pas dans le top 100 des resultats de Google pour la requete initiale.
+
+### Qu'est-ce que le GEO exactement ?
+Le GEO (Generative Engine Optimization) est l'art d'optimiser votre contenu pour qu'il soit cite dans les reponses generees par l'IA. Pensez au SEO applique a ChatGPT. L'objectif est que les LLM (ChatGPT, Google AI Overviews, Perplexity, Claude) choisissent de citer, referencer ou recommander votre contenu dans leurs reponses.
+
+Statistiques :
+- 93 % des sessions de recherche IA se terminent sans visite vers un site web.
+- +41 % de visibilite supplementaire dans les reponses IA grace aux methodes GEO.
+- 54 % des specialistes du marketing americains prevoient d'implanter une strategie GEO dans les 3 a 6 prochains mois.
+
+### Quel est le role des relations de presse dans le GEO ?
+Les relations de presse sont l'arme secrete du GEO. Les LLM font davantage confiance aux sources mediatiques independantes qu'au contenu proprietaire. Une mention dans un media d'autorite genere un signal de credibilite que les modeles d'IA privilegient lors du reranking.
+
+### Combien de temps faut-il pour voir des resultats ?
+Le GEO n'est pas une solution instantanee. Les premiers signaux apparaissent generalement entre 4 et 12 semaines selon l'etat de depart de votre presence en ligne et l'intensite des actions deployees.
+
+---
+
+## Page : Contactez-nous
+URL: https://indexiarp.com/nous-contacter/
+
+Premiere agence GEO et relations publiques au Quebec.
+
+Parlons de votre visibilite dans l'ere des LLM. Une question, un projet, une curiosite sur le GEO ? Notre equipe vous repond sous 24 heures.
+
+Formulaire de contact disponible sur la page. Sujets disponibles : Strategie GEO, Relations presse, Audit de visibilite IA, Formation / conference, Partenariat, Autre.
+
+---
+
+## A propos
+
+- Fondateur : Fabrice Giguere
+- Localisation : Montreal, Quebec, Canada
+- Secteur : Relations publiques, Generative Engine Optimization (GEO)
+- Langue : Francais (fr-CA)
+- LinkedIn : https://www.linkedin.com/company/indexia-relations-publiques
