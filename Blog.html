@@ -56,19 +56,20 @@
 
   /* ── HERO ── */
   .blog-hero {
-    padding: 100px 0 80px;
+    padding: 100px 0 140px;
+    margin-bottom: -80px;
     position: relative;
     z-index: 1;
     background:
-      radial-gradient(circle at 15% 60%, rgba(244,108,35,0.09) 0%, transparent 55%),
+      radial-gradient(circle at 15% 70%, rgba(244,108,35,0.10) 0%, transparent 60%),
       var(--bg);
   }
   .blog-hero::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 100px;
-    background: linear-gradient(to bottom, transparent, var(--bg));
+    height: 140px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
     pointer-events: none;
     z-index: 2;
   }
@@ -79,7 +80,7 @@
       linear-gradient(var(--line-2) 1px, transparent 1px),
       linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
+    mask-image: linear-gradient(to bottom, black 20%, transparent 80%);
     pointer-events: none;
     z-index: 1;
   }
@@ -117,7 +118,7 @@
 
   /* ── BLOG GRID ── */
   .blog-section {
-    padding: 40px 0 120px;
+    padding: 80px 0 120px;
     position: relative;
     z-index: 10;
   }
