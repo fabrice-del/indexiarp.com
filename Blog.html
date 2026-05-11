@@ -57,23 +57,13 @@
   /* ── HERO ── */
   .blog-page-wrapper {
     background:
-      radial-gradient(ellipse 70% 60% at 10% 20%, rgba(244,108,35,0.11) 0%, transparent 65%),
+      radial-gradient(ellipse 90% 45% at 8% 12%, rgba(244,108,35,0.11) 0%, transparent 70%),
       var(--bg);
   }
-
   .blog-hero {
     padding: 100px 0 60px;
     position: relative;
     z-index: 1;
-  }
-  .blog-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--bg));
-    pointer-events: none;
-    z-index: 2;
   }
   .blog-hero-grid {
     position: absolute;
@@ -82,10 +72,11 @@
       linear-gradient(var(--line-2) 1px, transparent 1px),
       linear-gradient(90deg, var(--line-2) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: linear-gradient(to bottom, black 20%, transparent 80%);
+    mask-image: linear-gradient(to bottom, black 20%, transparent 75%);
     pointer-events: none;
     z-index: 1;
   }
+
   .blog-eyebrow {
     font-family: var(--mono);
     font-size: 11px;
