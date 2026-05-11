@@ -197,6 +197,20 @@
     letter-spacing: 0.08em;
   }
 
+  /* ── Override Elementor parent sections ── */
+  .elementor-section:has(.blog-page-wrapper),
+  .elementor-section:has(.blog-page-wrapper) .elementor-container,
+  .elementor-section:has(.blog-page-wrapper) .elementor-column,
+  .elementor-section:has(.blog-page-wrapper) .elementor-widget-wrap,
+  .elementor-section:has(.blog-page-wrapper) .elementor-widget-container,
+  .e-con:has(.blog-page-wrapper),
+  .e-con:has(.blog-page-wrapper) > .e-con-inner {
+    background: transparent !important;
+    background-color: transparent !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
   @media (max-width: 900px) {
     .ixia-blog-grid { grid-template-columns: repeat(2,1fr); }
   }
