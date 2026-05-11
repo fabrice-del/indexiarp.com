@@ -19,3 +19,4 @@
 - Secteur : Relations publiques, Generative Engine Optimization (GEO)
 - Langue : Francais (fr-CA)
 - LinkedIn : https://www.linkedin.com/company/indexia-relations-publiques
+- [Blogue](https://indexiarp.com/blogue/): Articles sur le GEO, les LLM et les relations publiques. Strategies et conseils pour optimiser la visibilite des entreprises quebecoises dans ChatGPT, Perplexity et Gemini.

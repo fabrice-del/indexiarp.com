@@ -169,3 +169,21 @@ Formulaire de contact disponible sur la page. Sujets disponibles : Strategie GEO
 - Secteur : Relations publiques, Generative Engine Optimization (GEO)
 - Langue : Francais (fr-CA)
 - LinkedIn : https://www.linkedin.com/company/indexia-relations-publiques
+
+---
+
+## Page : Blogue
+URL: https://indexiarp.com/blogue/
+
+Articles sur le GEO, les LLM et les relations publiques. Ressource educative pour les entreprises quebecoises souhaitant comprendre et implementer des strategies de visibilite dans les moteurs generatifs.
+
+### Sujets couverts
+- GEO (Generative Engine Optimization) : strategies, methodologies et meilleures pratiques
+- LLM : fonctionnement de ChatGPT, Perplexity, Gemini, Claude et Copilot
+- Relations publiques adaptees a l'ere de l'IA generative
+- Optimisation de contenu pour les moteurs IA
+- Etudes de cas et exemples concrets pour les entreprises quebecoises
+- Donnees structurees et signaux techniques pour les LLM
+
+### Format
+Grille d'articles avec image de couverture et titre. Articles accessibles individuellement avec contenu complet.
