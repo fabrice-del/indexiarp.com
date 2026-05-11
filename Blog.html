@@ -275,6 +275,37 @@
       grid.innerHTML = '<div class="ixia-loading">Erreur de chargement des articles.</div>';
     });
 })();
+
+/* ─── Fix Elementor parent section backgrounds ── */
+(function() {
+  var wrapper = document.querySelector('.blog-page-wrapper');
+  if (!wrapper) return;
+
+  var el = wrapper;
+  while (el) {
+    el = el.parentElement;
+    if (!el) break;
+
+    var tag = el.tagName ? el.tagName.toLowerCase() : '';
+    var cls = el.className || '';
+
+    /* Stop at body */
+    if (tag === 'body') break;
+
+    /* Override background and padding on Elementor containers */
+    if (
+      cls.indexOf('elementor-section') > -1 ||
+      cls.indexOf('elementor-container') > -1 ||
+      cls.indexOf('elementor-column') > -1 ||
+      cls.indexOf('elementor-widget-wrap') > -1 ||
+      cls.indexOf('elementor-widget-container') > -1
+    ) {
+      el.style.background = 'transparent';
+      el.style.padding    = '0';
+      el.style.margin     = '0';
+    }
+  }
+})();
 </script>
 
 </body>
